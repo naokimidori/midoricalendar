@@ -1,0 +1,51 @@
+.calendar {
+
+}
+
+/* 顶部 */
+.calendar .calendar-header {
+  display: flex;
+  justify-content: center;
+}
+
+.calendar .calendar-top {
+  display: flex;
+}
+
+.calendar .calendar-top .ctrl {
+  margin:0 30rpx;
+}
+
+.calendar .swiper-box {
+  height: 500rpx;
+}
+
+/* 星期 */
+.calendar .calendar-week {
+  padding: 20rpx 24rpx 0;
+  display: flex;
+  /* justify-content: space-around; */
+}
+
+.calendar .calendar-week .week-item {
+  width: 14.28571428571429%;
+  text-align: center;
+}
+
+/* 日历表 */
+.calendar .calendar-day {
+  box-sizing: border-box;
+  padding: 20rpx 24rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendar .calendar-day .day-item {
+  width: 14.28571428571429%;
+  padding: 10rpx 0;
+  text-align: center;
+
+}
+.calendar .calendar-day .gray {
+  color: gray;
+}
