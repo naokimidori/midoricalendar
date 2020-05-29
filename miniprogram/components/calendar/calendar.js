@@ -1,4 +1,3 @@
-// components/calendar/calendar.js
 Component({
   properties: {
 
@@ -27,7 +26,7 @@ Component({
 
   methods: {
     /**
-     * 初始化页面
+     * 初始化组件
      */
     init: function() {
       const date = new Date(),
@@ -258,7 +257,7 @@ Component({
         lastNum = this.getNumOfDays(lastMonthYear, lastMonth) //上月天数
       let startWeek = this.getWeekOfDate(year, month - 1, 1), //本月1号是周几
         days = [];
-      if (startWeek == 7) {
+      if (startWeek == 6) {
         return days
       }
       const startDay = lastNum - startWeek
