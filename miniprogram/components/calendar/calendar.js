@@ -7,6 +7,9 @@ create.Component({
   },
 
   data: {
+    currentMonth: '',
+    currentYear: '',
+    currentDay: '',
     weekText: ['日', '一', '二', '三', '四', '五', '六'],
     date: '2020-05',
     day: '',
@@ -33,21 +36,24 @@ create.Component({
      */
     init: function() {
       const date = new Date(),
-        month = date.getMonth() + 1,
+        month = this.formatMonth(date.getMonth() + 1),
         year = date.getFullYear(),
-        day = date.getDate(),
+        day = this.formatDay(date.getDate()),
         today = `${year}-${month}-${day}`
       let calendar = this.generateThreeMonths(year, month)
-
       this.setData({
+        currentMonth: month,
+        currentYear: year,
+        currentDay: day,
         calendar,
         month,
         year,
         day,
         today,
         beSelectDate: today,
-        date: `${year}-${month}`
+        date: `${year}/${month}`
       })
+      console.log(calendar)
     },
     /**
      * 
@@ -65,7 +71,9 @@ create.Component({
           today,
           date,
           calendar,
-          swiperMap
+          swiperMap,
+          currentMonth,
+          currentDay,
         } = this.data,
         change = swiperMap[(lastIndex + 2) % 4],
         time = this.countMonth(year, month),
@@ -86,10 +94,14 @@ create.Component({
 
       year = time[key].year
       month = time[key].month
-      date = `${year}-${month}`
+      date = `${year}/${month}`
       day = ''
       if (today.indexOf(date) !== -1) {
         day = today.slice(-2)
+      }
+
+      if(parseInt(month) === parseInt(currentMonth)) {
+        day = currentDay;
       }
 
       time = this.countMonth(year, month)
@@ -200,22 +212,6 @@ create.Component({
         thisMonth,
         nextMonth
       }
-    },
-    /**
-     * 
-     * 月份处理
-     * @param {number} month 
-     * @returns format month MM 1-12
-     */
-    formatMonth(month) {
-      let monthStr = ''
-      if (month > 12 || month < 1) {
-        monthStr = Math.abs(month - 12) + ''
-      } else {
-        monthStr = month + ''
-      }
-      monthStr = `${monthStr.length > 1 ? '' : ''}${monthStr}`
-      return monthStr
     },
     /**
      * 
@@ -346,8 +342,24 @@ create.Component({
       }
       return days
     },
+    /**
+     * 
+     * 月份处理
+     * @param {number} month 
+     * @returns format month MM 1-12
+     */
+    formatMonth(month) {
+      let monthStr = ''
+      if (month > 12 || month < 1) {
+        monthStr = Math.abs(month - 12) + ''
+      } else {
+        monthStr = month + ''
+      }
+      monthStr = `${monthStr.length > 1 ? '' : '0'}${monthStr}`
+      return monthStr
+    },
     formatDay(day) {
-      return `${(day + '').length > 1 ? '' : ''}${day}`
+      return `${(day + '').length > 1 ? '' : '0'}${day}`
     }
   }
 })

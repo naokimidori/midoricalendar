@@ -2,12 +2,12 @@
 
   <!-- 顶部及切换 -->
   <view class="calendar-header">
-    <view class="calendar-top">
-      <view class="ctrl"> ◀ </view>
-      <picker mode="date" value="{{date}}" start="1994-05" end="2099-12" fields='month' bindchange="bindDateChange">
-        <view> {{date}} </view>
-      </picker>
-      <view class="ctrl"> ▶ </view>
+    <picker mode="date" value="{{date}}" start="1994-05" end="2099-12" fields='month' bindchange="bindDateChange">
+      <view class="header-day">{{day || '01'}}</view>
+    </picker>
+    <view class="header-info">
+      <view class="city">成都市</view>
+      <view class="month">{{date}}</view>
     </view>
   </view>
 
@@ -29,7 +29,12 @@
         <view class="week-item" wx:for="{{weekText}}" wx:key="item">{{item}}</view>
       </view>
       <view class="calendar-day">
-        <view wx:for="{{calendar.second}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}}">
+        <view
+          wx:for="{{calendar.second}}"
+          wx:for-item='x'
+          wx:key='date'
+          class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+        >
           {{x.day}}
         </view>
       </view>

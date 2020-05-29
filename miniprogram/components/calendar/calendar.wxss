@@ -1,23 +1,49 @@
 .calendar {
-
 }
 
 /* 顶部 */
 .calendar .calendar-header {
   display: flex;
+  align-items: flex-end;
+  padding: 30rpx 10rpx;
+  background-color: #D7E9F5;
+}
+
+.calendar .calendar-header .header-day {
+  padding: 0 30rpx;
+  font-family: PingFangSC-Medium;
+  /* font-weight: 600; */
+  font-size: 120rpx;
+  line-height: 120rpx;
+}
+
+.calendar .calendar-header .header-info {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: flex-start; */
+}
+
+.calendar .calendar-header .header-info .city {
+  box-sizing: border-box;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  border: 2rpx solid #596770;
+  color: #596770;
+  display: inline-flex;
   justify-content: center;
+  align-items: center;
+  border-radius: 6rpx;
+  padding: 2rpx 6rpx;
 }
 
-.calendar .calendar-top {
-  display: flex;
-}
-
-.calendar .calendar-top .ctrl {
-  margin:0 30rpx;
+.calendar .calendar-header .header-info .month {
+  margin-top: 6rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
 }
 
 .calendar .swiper-box {
-  height: 500rpx;
+  height: 700rpx;
 }
 
 /* 星期 */
@@ -30,22 +56,30 @@
 .calendar .calendar-week .week-item {
   width: 14.28571428571429%;
   text-align: center;
+  font-size: 26rpx;
 }
 
 /* 日历表 */
 .calendar .calendar-day {
   box-sizing: border-box;
-  padding: 20rpx 24rpx;
+  padding: 40rpx 24rpx 20rpx;
   display: flex;
   flex-wrap: wrap;
 }
 
 .calendar .calendar-day .day-item {
+  box-sizing: border-box;
   width: 14.28571428571429%;
-  padding: 10rpx 0;
+  height: 100rpx;
+  padding-top: 10rpx;
   text-align: center;
-
+  border-radius: 50%;
 }
+
 .calendar .calendar-day .gray {
   color: gray;
+}
+
+.calendar .calendar-day .today {
+  background-color: #dddddd;
 }
