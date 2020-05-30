@@ -1,0 +1,18 @@
+<view class="page-guide">
+  <image src="{{picUrl}}"></image>
+  <view class="guide-title">小程序授权</view>
+  <view class="guide-desc">请授权小程序以获取小树日历的能力</view>
+  <view class="guide-btns">
+    <button class="btn" bindtap="handleBack">暂不登录</button>
+    <button
+      class="btn"
+      open-type="getUserInfo"
+      bindtap="handleGetUserInfo"
+      type="primary"
+    >
+      <image class="btn-pic" src="../../images/wechat.png"></image>
+      立即登录
+    </button>
+
+  </view>
+</view>

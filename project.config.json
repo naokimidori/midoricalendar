@@ -51,34 +51,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "pages/jidian/jidian",
-					"pathName": "pages/jidian/jidian",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/test/test",
-					"pathName": "pages/test/test",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/hehe/hehe",
-					"pathName": "pages/hehe/hehe",
-					"scene": null
-				}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }

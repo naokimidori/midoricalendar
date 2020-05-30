@@ -1,5 +1,7 @@
 export default {
   data: {
+    hasAuthUserInfo: false, // 用户信息获取是否已授权
+    userInfo: {},
     mainBgColor: '#ffffff',
     calendar: {},
     currentCity: '',

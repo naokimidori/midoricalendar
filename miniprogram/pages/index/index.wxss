@@ -1,15 +1,16 @@
 .page-index {
   min-height: 100vh;
+  padding-bottom: 30rpx;
   /* background-color: #f2f2f2; */
 }
 
 .page-index .index-agenda {
   margin: 50rpx auto 0;
-  width: 90%;
+  width: 86%;
   padding: 20rpx;
   background-color: #fff;
   /* border: 1rpx solid #f2f2f2; */
-  box-shadow: 0rpx 0rpx 12rpx #ddd;
+  box-shadow: 0rpx 0rpx 20rpx #ddd;
   border-radius: 8rpx;
   position: relative;
   min-height: 260rpx;
@@ -22,7 +23,7 @@
   height: 90rpx;
   right: 60rpx;
   top: -45rpx;
-  box-shadow: 0rpx 0rpx 8rpx #ddd;
+  box-shadow: 0rpx 0rpx 14rpx #ddd;
   border-radius: 50%;
   text-align: center;
   line-height: 90rpx;

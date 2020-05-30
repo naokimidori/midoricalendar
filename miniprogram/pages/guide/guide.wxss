@@ -1,0 +1,42 @@
+.page-guide {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding-top: 150rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #EFEFEF;
+}
+
+.page-guide .guide-title {
+  font-size: 42rpx;
+  color: #000;
+  margin: 20rpx 0;
+}
+
+.page-guide .guide-desc {
+  color: #a7a7a7;
+  font-size: 30rpx;
+}
+
+.page-guide .guide-btns {
+  margin-top: 80rpx;
+  display: flex;
+}
+
+.page-guide .guide-btns .btn {
+  width: 300rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-guide .guide-btns .btn .btn-pic {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+
+.page-guide .guide-btns .btn:first-child {
+ margin-right: 30rpx;
+}

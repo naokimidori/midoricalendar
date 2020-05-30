@@ -1,2 +1,17 @@
-<!--miniprogram/pages/my/my.wxml-->
-<text>miniprogram/pages/my/my.wxml</text>
+<view class="page-my">
+  <!-- 未登录 -->
+  <view wx:if="{{!$.hasAuthUserInfo}}" class="header no-login" bindtap="jumpToGuide">
+    <view class="empty-avatar">
+      <image class="avatar" src="../../images/avatar.png"></image>
+    </view>
+    <view class="notice">
+      <view class="notice-title">立即登录</view>
+      <view class="notice-desc">登录后才可创建班表、日程</view>
+    </view>
+  </view>
+  <!-- 用户信息栏 -->
+  <view wx:if="{{$.hasAuthUserInfo}}" class="header my-userInfo">
+    <image class="avatar" src="{{$.userInfo.avatarUrl}}"></image>
+    <view class="nickname">{{$.userInfo.nickName}}</view>
+  </view>
+</view>

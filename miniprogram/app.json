@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/guide/guide"
   ],
   "window": {
-    "backgroundColor": "#93c7b1",
+    "backgroundColor": "#FFFFFF",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#93c7b1",
     "navigationBarTitleText": "小树日历",
