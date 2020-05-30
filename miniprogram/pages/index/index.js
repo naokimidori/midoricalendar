@@ -2,7 +2,7 @@ import create from '../../utils/create';
 import store from '../../store/index';
 
 const options = {
-  use: [],
+  use: ['mainBgColor'],
   data: {
   },
   onLoad() {

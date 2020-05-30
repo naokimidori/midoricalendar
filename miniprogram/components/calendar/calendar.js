@@ -53,7 +53,6 @@ create.Component({
         beSelectDate: today,
         date: `${year}/${month}`
       })
-      console.log(calendar)
     },
     /**
      * 
@@ -177,6 +176,8 @@ create.Component({
       calendar[thisKey] = this.generateAllDays(time.thisMonth.year, time.thisMonth.month)
       delete calendar[nextKey]
       calendar[nextKey] = this.generateAllDays(time.nextMonth.year, time.nextMonth.month)
+      // 注入store
+      this.store.data.calendar = calendar;
 
       return calendar
     },

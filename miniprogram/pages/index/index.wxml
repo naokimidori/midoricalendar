@@ -1,3 +1,7 @@
-<view class="page-index">
+<view class="page-index" style="background-color: {{$.mainBgColor}}">
   <calendar />
+  <view class="index-agenda">
+    <view class="today">今</view>
+    <view class="agenda-title">今日日程</view>
+  </view>
 </view>
