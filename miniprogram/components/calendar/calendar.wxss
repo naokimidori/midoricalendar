@@ -1,13 +1,15 @@
 .calendar {
   /* background-color: #f2f2f2; */
 }
-
 /* 顶部 */
 .calendar .calendar-header {
   display: flex;
   align-items: flex-end;
-  padding: 30rpx 10rpx;
-  background-color: #D7E9F5;
+  padding: 40rpx 10rpx 20rpx;
+  background-image: linear-gradient(180deg, #93c7b1, #cff3e5);
+  /* background-image: url(https://cdn.nlark.com/yuque/0/2020/png/280373/1590545693849-assets/web-upload/5ad7c72d-13a8-47b0-a851-11220e11d03d.png); */
+  background-repeat: no-repeat;
+  background-position: 100%;
 }
 
 .calendar .calendar-header .header-day {
@@ -41,6 +43,11 @@
   margin-top: 6rpx;
   font-size: 28rpx;
   font-family: PingFangSC-Medium;
+}
+
+.calendar .calendar-empty {
+  height: 60rpx;
+  background-image: linear-gradient(180deg, #cff3e5, #fff);
 }
 
 .calendar .swiper-box {

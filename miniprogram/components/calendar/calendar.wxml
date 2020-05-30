@@ -1,5 +1,4 @@
 <view class="calendar">
-
   <!-- 顶部及切换 -->
   <view class="calendar-header">
     <picker mode="date" value="{{date}}" start="1994-05" end="2099-12" fields='month' bindchange="bindDateChange">
@@ -10,7 +9,7 @@
       <view class="month">{{date}}</view>
     </view>
   </view>
-
+  <view class="calendar-empty"></view>
   <swiper current="{{swiperIndex}}" circular="true" class="swiper-box" bindchange='swiperChange'>
     <!-- 前一月日历 -->
     <swiper-item>

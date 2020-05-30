@@ -4,9 +4,9 @@
     "pages/my/my"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#93c7b1",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#93c7b1",
     "navigationBarTitleText": "小树日历",
     "navigationBarTextStyle": "black"
   },
