@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/my/my",
-    "pages/guide/guide"
+    "pages/guide/guide",
+    "pages/sheet-setting/sheet-setting"
   ],
   "window": {
     "backgroundColor": "#FFFFFF",

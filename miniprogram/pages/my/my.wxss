@@ -5,7 +5,7 @@
 
 .page-my .header {
   display: flex;
-  padding: 10rpx 32rpx;
+  padding: 30rpx 32rpx;
   border-bottom: 20rpx solid #f2f2f2;
 }
 .page-my .no-login .empty-avatar {
@@ -50,4 +50,39 @@
   display: flex;
   align-items: center;
   font-size: 38rpx;
+}
+
+.page-my .menu-item {
+  padding: 40rpx 32rpx;
+  border-bottom: 2rpx solid #f2f2f2;
+  display: flex;
+  align-items: center;
+}
+
+.page-my .feedback-btn {
+  box-sizing: border-box;
+  background-color: #fff;
+  width: 100%;
+  text-align: left;
+  font-weight: normal;
+}
+
+.page-my .item-incise {
+  border-bottom: 20rpx solid #f2f2f2;
+}
+
+.page-my .menu-item .menu-item-pic {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 30rpx;
+}
+
+.page-my .menu-item .menu-item-title {
+  flex: 1;
+  font-size: 32rpx;
+}
+
+.page-my .menu-item .menu-item-arrow {
+  width: 40rpx;
+  height: 40rpx;
 }

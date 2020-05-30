@@ -14,4 +14,30 @@
     <image class="avatar" src="{{$.userInfo.avatarUrl}}"></image>
     <view class="nickname">{{$.userInfo.nickName}}</view>
   </view>
+
+  <!-- 菜单列表 -->
+  <view class="menu-item item-incise" bindtap="handleSetting">
+    <image class="menu-item-pic" src="../../images/setting.png"></image>
+    <view class="menu-item-title">班次设置</view>
+    <image class="menu-item-arrow" src="../../images/arrow.png"></image>
+  </view>
+
+  <button class="menu-item feedback-btn" open-type='feedback'>
+    <image class="menu-item-pic" src="../../images/feedback.png"></image>
+    <view class="menu-item-title">意见反馈</view>
+    <image class="menu-item-arrow" src="../../images/arrow.png"></image>
+  </button>
+
+  <view class="menu-item" bindtap="showZScode">
+    <image class="menu-item-pic" src="../../images/zan.png"></image>
+    <view class="menu-item-title">赞赏支持</view>
+    <image class="menu-item-arrow" src="../../images/arrow.png"></image>
+  </view>
+
+  <view class="menu-item">
+    <image class="menu-item-pic" src="../../images/about.png"></image>
+    <view class="menu-item-title">关于我们</view>
+    <image class="menu-item-arrow" src="../../images/arrow.png"></image>
+  </view>
+
 </view>
