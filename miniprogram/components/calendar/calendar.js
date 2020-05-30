@@ -1,7 +1,7 @@
 import create from '../../utils/create';
 
 create.Component({
-  use: [],
+  use: ['currentCity'],
   properties: {
 
   },
@@ -73,6 +73,7 @@ create.Component({
           swiperMap,
           currentMonth,
           currentDay,
+          currentYear,
         } = this.data,
         change = swiperMap[(lastIndex + 2) % 4],
         time = this.countMonth(year, month),
@@ -99,7 +100,7 @@ create.Component({
         day = today.slice(-2)
       }
 
-      if(parseInt(month) === parseInt(currentMonth)) {
+      if(parseInt(month) === parseInt(currentMonth) && parseInt(year) === parseInt(currentYear)) {
         day = currentDay;
       }
 
@@ -139,12 +140,19 @@ create.Component({
     changeDate(year, month) {
       let {
         day,
-        today
-      } = this.data, calendar = this.generateThreeMonths(year, month), date = `${year}-${month}`
+        today,
+        currentMonth,
+        currentDay,
+        currentYear,
+      } = this.data,
+      calendar = this.generateThreeMonths(year, month),
+      date = `${year}-${month}`
       date.indexOf(today) === -1 ?
         day = '01' :
         day = today.slice(-2)
-
+      if(parseInt(month) === parseInt(currentMonth) && parseInt(year) === parseInt(currentYear)) {
+        day = currentDay;
+      }
       this.setData({
         calendar,
         day,

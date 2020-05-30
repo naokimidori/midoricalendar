@@ -6,7 +6,7 @@
       <view class="header-day">{{day || '01'}}</view>
     </picker>
     <view class="header-info">
-      <view class="city">成都市</view>
+      <view wx:if="{{currentCity}}" class="city">{{currentCity}}</view>
       <view class="month">{{date}}</view>
     </view>
   </view>
@@ -18,8 +18,14 @@
         <view class="week-item" wx:for="{{weekText}}" wx:key="item">{{item}}</view>
       </view>
       <view class="calendar-day">
-        <view wx:for="{{calendar.first}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}}">
-          {{x.day}}
+        <view
+          wx:for="{{calendar.first}}"
+          wx:for-item='x'
+          wx:key='date'
+          class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+        >
+          <view class="day-txt">{{x.day}}</view>
+          <view class="work-type">早班啊</view>
         </view>
       </view>
     </swiper-item>
@@ -35,7 +41,8 @@
           wx:key='date'
           class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
         >
-          {{x.day}}
+          <view class="day-txt">{{x.day}}</view>
+          <view class="work-type">早班</view>
         </view>
       </view>
     </swiper-item>
@@ -45,8 +52,14 @@
         <view class="week-item" wx:for="{{weekText}}" wx:key="item">{{item}}</view>
       </view>
       <view class="calendar-day">
-        <view wx:for="{{calendar.third}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}}">
-          {{x.day}}
+        <view
+          wx:for="{{calendar.third}}"
+          wx:for-item='x'
+          wx:key='date'
+          class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+        >
+          <view class="day-txt">{{x.day}}</view>
+          <view class="work-type">早班啊</view>
         </view>
       </view>
     </swiper-item>
@@ -56,8 +69,14 @@
         <view class="week-item" wx:for="{{weekText}}" wx:key="item">{{item}}</view>
       </view>
       <view class="calendar-day">
-        <view  wx:for="{{calendar.fourth}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}}">
-          {{x.day}}
+        <view
+          wx:for="{{calendar.fourth}}"
+          wx:for-item='x'
+          wx:key='date'
+          class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+        >
+          <view class="day-txt">{{x.day}}</view>
+          <view class="work-type">早班啊</view>
         </view>
       </view>
     </swiper-item>
