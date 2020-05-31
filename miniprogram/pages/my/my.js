@@ -1,5 +1,6 @@
 import create from '../../utils/create';
 import store from '../../store/index';
+import config from '../../config/config';
 
 const options = {
   use: [
@@ -22,8 +23,8 @@ const options = {
 
   showZScode: async function () {
     wx.previewImage({
-      urls: ['cloud://calendar-prod-w7kpb.6361-calendar-prod-w7kpb-1302089220/project_pics/zanshang.jpg'],
-      current: 'cloud://calendar-prod-w7kpb.6361-calendar-prod-w7kpb-1302089220/project_pics/zanshang.jpg',
+      urls: [config.tipQrCode],
+      current: config.tipQrCode,
     });
   },
 };

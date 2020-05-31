@@ -1,10 +1,11 @@
 import create from '../../utils/create';
 import store from '../../store/index';
+import config from '../../config/config';
 
 const options = {
   use: [],
   data: {
-    picUrl: 'https://cdn.nlark.com/yuque/0/2019/gif/280373/1567733825085-assets/web-upload/8f327547-55d1-4397-aeba-8ae68309d0fb.gif'
+    picUrl: config.logoGif
   },
   handleGetUserInfo() {
     let _this = this;

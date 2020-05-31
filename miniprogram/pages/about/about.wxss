@@ -1,0 +1,36 @@
+.page-about {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding-top: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #EFEFEF;
+}
+
+.page-about .about-title {
+  font-size: 42rpx;
+  font-weight: 500;
+  margin-top: 30rpx;
+}
+
+.page-about .about-desc {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #818181;
+}
+
+.page-about .about-slogan {
+  max-width: 80%;
+  font-size: 30rpx;
+  margin-top: 40rpx;
+}
+
+.page-about .about-version {
+  position: fixed;
+  left: 50%;
+  bottom: 60rpx;
+  transform: translate(-50%);
+  font-size: 28rpx;
+  color: #818181;
+}

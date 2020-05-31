@@ -6,7 +6,7 @@
     </view>
     <view class="notice">
       <view class="notice-title">立即登录</view>
-      <view class="notice-desc">登录后才可创建班表、日程</view>
+      <view class="notice-desc">登录后可体验更多功能</view>
     </view>
   </view>
   <!-- 用户信息栏 -->

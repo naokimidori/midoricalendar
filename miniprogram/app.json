@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/my/my",
     "pages/guide/guide",
-    "pages/sheet-setting/sheet-setting"
+    "pages/sheet-setting/sheet-setting",
+    "pages/about/about"
   ],
   "window": {
     "backgroundColor": "#FFFFFF",
