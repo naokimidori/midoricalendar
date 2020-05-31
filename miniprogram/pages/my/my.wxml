@@ -34,7 +34,7 @@
     <image class="menu-item-arrow" src="../../images/arrow.png"></image>
   </view>
 
-  <view class="menu-item">
+  <view class="menu-item" bindtap="goToAbout">
     <image class="menu-item-pic" src="../../images/about.png"></image>
     <view class="menu-item-title">关于我们</view>
     <image class="menu-item-arrow" src="../../images/arrow.png"></image>

@@ -27,6 +27,12 @@ const options = {
       current: config.tipQrCode,
     });
   },
+
+  goToAbout() {
+    wx.navigateTo({
+      url: '/pages/about/about',
+    });
+  },
 };
 
 create.Page(store, options);
