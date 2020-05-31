@@ -4,6 +4,114 @@
   /* background-color: #f2f2f2; */
 }
 
+.calendar {
+  /* background-color: #f2f2f2; */
+}
+/* 顶部 */
+.calendar .calendar-header {
+  display: flex;
+  align-items: flex-end;
+  padding: 40rpx 10rpx 20rpx;
+  background-image: linear-gradient(180deg, #93c7b1, #cff3e5);
+  /* background-image: url(https://cdn.nlark.com/yuque/0/2020/png/280373/1590545693849-assets/web-upload/5ad7c72d-13a8-47b0-a851-11220e11d03d.png); */
+  background-repeat: no-repeat;
+  background-position: 100%;
+}
+
+.calendar .calendar-header .header-day {
+  padding: 0 30rpx;
+  font-family: PingFangSC-Medium;
+  /* font-weight: 600; */
+  font-size: 120rpx;
+  line-height: 120rpx;
+}
+
+.calendar .calendar-header .header-info {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: flex-start; */
+}
+
+.calendar .calendar-header .header-info .city {
+  box-sizing: border-box;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  border: 2rpx solid #596770;
+  color: #596770;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6rpx;
+  padding: 2rpx 6rpx;
+}
+
+.calendar .calendar-header .header-info .month {
+  margin-top: 6rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.calendar .calendar-empty {
+  height: 60rpx;
+  background-image: linear-gradient(180deg, #cff3e5, #fff);
+}
+
+.calendar .swiper-box {
+  height: 800rpx;
+}
+
+/* 星期 */
+.calendar .calendar-week {
+  padding: 20rpx 24rpx 0;
+  display: flex;
+  /* justify-content: space-around; */
+}
+
+.calendar .calendar-week .week-item {
+  width: 14.28571428571429%;
+  text-align: center;
+  font-size: 22rpx;
+}
+
+/* 日历表 */
+.calendar .calendar-day {
+  box-sizing: border-box;
+  padding: 24rpx 24rpx 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendar .calendar-day .day-item {
+  box-sizing: border-box;
+  width: 14.28571428571429%;
+  height: 100rpx;
+  padding: 0 8rpx 8rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+.calendar .calendar-day .day-item .day-txt {
+  font-size: 32rpx;
+}
+.calendar .calendar-day .day-item .work-type {
+  padding: 4rpx 0;
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #fff;
+  border: 1rpx solid #ccc;
+  background-color: rgb(91, 181, 241);
+  border-radius: 6rpx;
+}
+
+.calendar .calendar-day .gray {
+  color: gray;
+}
+
+.calendar .calendar-day .today {
+  background-color:#faebd0;
+}
+
+
 .page-index .index-agenda {
   margin: 50rpx auto 0;
   width: 86%;
