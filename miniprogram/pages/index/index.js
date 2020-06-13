@@ -34,7 +34,6 @@ const options = {
     let _this = this;
     wx.getLocation({
       success: (res) => {
-        console.log(res);
         const { longitude, latitude } = res;
         const location = `${longitude},${latitude}`;
         _this.getCurrentCity(location);
@@ -379,12 +378,13 @@ const options = {
       let week = weekMap[new Date(year, month - 1, i).getUTCDay()]
       let day = this.formatDay(i)
       days.push({
+        _id: `${year}${month}${day}`,
         date: `${year}-${month}-${day}`,
         event: false,
         day,
         week,
         month,
-        year
+        year: year + ''
       })
     }
     return days

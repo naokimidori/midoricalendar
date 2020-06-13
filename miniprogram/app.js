@@ -13,6 +13,7 @@ App({
       })
     }
     this.getAuthInfo();
+    this.getOpenid();
   },
   getAuthInfo() {
     wx.getSetting({
@@ -33,5 +34,27 @@ App({
         }
       }
     })
+  },
+  getOpenid() {
+    const openid = wx.getStorageSync('openid');
+    if (openid) {
+      store.data.openid = openid
+    } else {
+      wx.cloud.callFunction({
+        name: 'login',
+        data: {},
+        success: res => {
+          console.log('[云函数] [login] 调用成功', res);
+          if (res.result.openid) {
+            store.data.openid = openid;
+            wx.setStorageSync('openid', res.result.openid);
+          }
+        },
+        fail: err => {
+          store.data.openid = '';
+          console.error('[云函数] [getopenid] 调用失败', err)
+        }
+      })
+    }
   },
 })
