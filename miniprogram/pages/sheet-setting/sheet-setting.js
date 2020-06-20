@@ -18,7 +18,6 @@ Page({
 
       const { result = {} } = res || {}
       if (result && result.data) {
-        console.log(result.data)
         this.setData({
           sheetList: result.data || []
         })

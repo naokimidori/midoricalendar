@@ -53,9 +53,9 @@ Page({
     const { type: startType, time: startTime } = start
     const { type: endType, time: endTime } = end
 
-    if (!name || !activeColor || !startTime || !endTime) {
+    if (!name) {
       wx.showToast({
-        title: '请检查输入项是否非空',
+        title: '请输入班次名称',
         icon: 'none',
         duration: 2000
       })
@@ -97,9 +97,7 @@ Page({
         duration: 2000
       })
       setTimeout(() => {
-        wx.navigateTo({
-          url: '/pages/sheet-setting/sheet-setting',
-        })
+        wx.navigateBack()
       }, 2000)
     }).catch(e => {
       wx.hideLoading()

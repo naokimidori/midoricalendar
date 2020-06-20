@@ -2,7 +2,7 @@
   <view wx:for="{{sheetList}}" class="sheet-item" wx:key="_id">
     <view class="item-colorbox" style="background: {{item.color}}">{{item.sheetName}}</view>
     <view class="item-time">
-      {{item.startTime}} ~ {{item.endTime}}
+      {{item.startTime ? item.startTime+' ~ '+ item.endTime : ''}}
       <image class="item-arrow" src="../../images/arrow.png"></image>
     </view>
   </view>
