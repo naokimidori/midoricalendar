@@ -1,0 +1,58 @@
+<view class="page-sheet-form margin-top">
+  <view class="action-title">班次名称</view>
+  <input
+    class="name-input"
+    placeholder="请填写班次名称"
+    bindinput="onNameInput"
+  ></input>
+
+  <view class="action-title">班次时段</view>
+  <view class="time-wrapper">
+    <picker
+      class="time-item time-start"
+      mode="multiSelector"
+      bindchange="bindStartPickerChange"
+      range="{{multiArray}}"
+    >
+      <view class="time-txt">
+        开始时间
+        <text class="cuIcon-right text-gray"></text>
+      </view>
+      <view class="time-tips text-green">
+        {{start.time || '选择时间'}}
+      </view>
+    </picker>
+    <picker
+      class="time-item"
+      mode="multiSelector"
+      bindchange="bindEndPickerChange"
+      range="{{multiArray}}"
+    >
+      <view class="time-txt">
+        结束时间
+        <text class="cuIcon-right text-gray"></text>
+      </view>
+      <view class="time-tips text-green">
+        {{end.time || '选择时间'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="action-title">选择颜色</view>
+  <view class="color-wrapper">
+    <view
+      wx:for='{{colorList}}'
+      wx:key='color'
+      class="color-item"
+      style="background:{{item.color}}"
+      data-color="{{item.color}}"
+      bindtap="onSelectColor"
+    >
+      <view wx:if="{{item.color === activeColor}}" class="item-active"></view>
+    </view>
+  </view>
+  <view class="btn-wrapper">
+    <button class="btn-del" disabled>删除</button>
+    <button class="btn-save" bindtap="handleSave">保存</button>
+  </view>
+</view>

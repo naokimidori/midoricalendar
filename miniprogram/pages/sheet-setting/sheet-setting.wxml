@@ -1,3 +1,6 @@
 <view class="page-setting">
   班次设置
-</view>
+  <view class="add-new" bindtap="handleToForm" data-type="new">
+    新建班次
+  </view>
+</view> 

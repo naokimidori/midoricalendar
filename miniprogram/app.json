@@ -4,7 +4,8 @@
     "pages/my/my",
     "pages/guide/guide",
     "pages/sheet-setting/sheet-setting",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/sheet-setting/form/form"
   ],
   "window": {
     "backgroundColor": "#FFFFFF",

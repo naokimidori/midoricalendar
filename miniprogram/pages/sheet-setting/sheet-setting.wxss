@@ -1,1 +1,17 @@
-/* miniprogram/pages/sheet-setting/sheet-setting.wxss */
+.page-setting {
+
+}
+
+.page-setting .add-new {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100rpx;
+  width: 100%;
+  background-color: #93C7B1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}

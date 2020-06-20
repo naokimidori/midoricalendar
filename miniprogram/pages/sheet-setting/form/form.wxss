@@ -1,0 +1,102 @@
+.page-sheet-form {
+  padding:32rpx;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.page-sheet-form .action-title {
+  padding: 10rpx 0 20rpx;
+  font-size: 32rpx;
+}
+
+.page-sheet-form .name-input {
+  font-size: 32rpx;
+  height: 90rpx;
+  border: 2rpx solid #F7F7F7;
+  border-radius: 4rpx;
+  padding-left: 24rpx;
+  margin-bottom: 30rpx;
+}
+
+.page-sheet-form .time-wrapper {
+  padding: 16rpx 0;
+  background-color: #F7F7F7;
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+.page-sheet-form .time-wrapper .time-item {
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.page-sheet-form .time-wrapper .time-start {
+  border-right: 1rpx solid #E5E5E5;
+  padding-left: 50rpx;
+  margin-right: 50rpx;
+}
+
+.page-sheet-form .time-wrapper .time-item .time-txt {
+  color: #7B7B7B;
+}
+
+.page-sheet-form .time-wrapper .time-item .time-tips {
+  font-weight: bold;
+  margin-top: 8rpx;
+}
+
+.page-sheet-form .color-wrapper {
+  background-color: #F7F7F7;
+  padding: 30rpx 30rpx 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-sheet-form .color-wrapper .color-item {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 25rpx;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+  position: relative;
+}
+
+.page-sheet-form .color-wrapper .color-item:nth-child(6n) {
+  margin-right: 0;
+}
+
+.page-sheet-form .color-wrapper .item-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.page-sheet-form .color-wrapper .item-active::after {
+	content: '✓';
+	color: #fff;
+	font-size: 60rpx;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.page-sheet-form .btn-wrapper {
+  margin-top: 200rpx;
+  display: flex;
+}
+
+.page-sheet-form .btn-wrapper .btn-del {
+  width: 300rpx;
+  background-color: #F7F7F7;
+}
+
+.page-sheet-form .btn-wrapper .btn-save {
+  width: 300rpx;
+  color: #fff;
+  background-color: #39b54a;
+}
