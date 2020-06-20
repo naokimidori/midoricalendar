@@ -96,7 +96,7 @@
 .calendar .calendar-day .day-item .work-type {
   padding: 4rpx 0;
   margin-top: 4rpx;
-  font-size: 22rpx;
+  font-size: 20rpx;
   color: #fff;
   border: 1rpx solid #ccc;
   background-color: rgb(91, 181, 241);

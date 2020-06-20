@@ -49,6 +49,64 @@ Page({
   },
 
   handleSave() {
+    const { name, activeColor, start, end } = this.data
+    const { type: startType, time: startTime } = start
+    const { type: endType, time: endTime } = end
 
+    if (!name || !activeColor || !startTime || !endTime) {
+      wx.showToast({
+        title: '请检查输入项是否非空',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+
+    if (name.length>4) {
+      wx.showToast({
+        title: '班次名称最多支持4个字符',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+
+    const params = {
+      sheetName: name,
+      startType: 'today',
+      startTime,
+      endType,
+      endTime,
+    }
+
+    wx.showLoading({
+      title: '保存中',
+    })
+    wx.cloud.callFunction({
+      name: 'addSheetSettingInfo',
+      data: {
+        ...params
+      }
+    }).then(res => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '保存成功',
+        icon: 'success',
+        duration: 2000
+      })
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/sheet-setting/sheet-setting',
+        })
+      }, 2000)
+    }).catch(e => {
+      wx.hideLoading()
+      console.error('addSheetSettingInfo', e)
+      wx.showToast({
+        title: '服务异常，请稍后再试',
+        icon: 'none',
+        duration: 2000
+      })
+    })
   },
 })

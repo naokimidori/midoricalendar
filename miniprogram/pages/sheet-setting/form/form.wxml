@@ -1,4 +1,4 @@
-<view class="page-sheet-form margin-top">
+<view class="page-sheet-form">
   <view class="action-title">班次名称</view>
   <input
     class="name-input"
