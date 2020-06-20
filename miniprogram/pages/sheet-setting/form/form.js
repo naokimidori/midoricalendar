@@ -77,15 +77,17 @@ Page({
       startTime,
       endType,
       endTime,
+      color: activeColor,
     }
 
     wx.showLoading({
       title: '保存中',
     })
     wx.cloud.callFunction({
-      name: 'addSheetSettingInfo',
+      name: 'sheetSetList',
       data: {
-        ...params
+        ...params, 
+        action: 'add'
       }
     }).then(res => {
       wx.hideLoading()

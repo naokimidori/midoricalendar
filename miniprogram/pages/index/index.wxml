@@ -45,7 +45,7 @@
 				<view class="calendar-day">
 					<view wx:for="{{calendar.third}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}">
 						<view class="day-txt">{{x.day}}</view>
-						<view class="work-type">早班啊</view>
+						<view class="work-type">早班啊啊</view>
 					</view>
 				</view>
 			</swiper-item>

@@ -1,5 +1,11 @@
 <view class="page-setting">
-  班次设置
+  <view wx:for="{{sheetList}}" class="sheet-item" wx:key="_id">
+    <view class="item-colorbox" style="background: {{item.color}}">{{item.sheetName}}</view>
+    <view class="item-time">
+      {{item.startTime}} ~ {{item.endTime}}
+      <image class="item-arrow" src="../../images/arrow.png"></image>
+    </view>
+  </view>
   <view class="add-new" bindtap="handleToForm" data-type="new">
     新建班次
   </view>
