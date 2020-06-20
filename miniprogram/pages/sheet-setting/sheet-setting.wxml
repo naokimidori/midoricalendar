@@ -1,4 +1,5 @@
 <view class="page-setting">
+  <view class="sheet-list-info">* 班次列表</view>
   <view wx:for="{{sheetList}}" class="sheet-item" wx:key="_id">
     <view class="item-colorbox" style="background: {{item.color}}">{{item.sheetName}}</view>
     <view class="item-time">

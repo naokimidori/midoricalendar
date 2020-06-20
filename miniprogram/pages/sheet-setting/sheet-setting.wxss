@@ -1,6 +1,11 @@
 .page-setting {
   padding-top: 20rpx;
 }
+
+.page-setting .sheet-list-info {
+  padding: 0 0 20rpx 20rpx;
+}
+
 .page-setting .sheet-item {
   padding: 20rpx 20rpx 20rpx 40rpx;
   background-color: #fff;

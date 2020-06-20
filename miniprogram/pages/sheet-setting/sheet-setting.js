@@ -2,7 +2,7 @@ Page({
   data: {
     sheetList: []
   },
-  onLoad() {
+  onShow() {
     this.getSheetSetList()
   },
   getSheetSetList() {
