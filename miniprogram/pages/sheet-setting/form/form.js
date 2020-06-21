@@ -1,18 +1,25 @@
-import { colorList, multiArray } from '../../../config/colorList';
+import { colorList } from '../../../config/colorList';
 
 Page({
   data: {
     colorList: colorList,
-    multiArray: multiArray,
     activeColor: '#e54d42',
     name: '',
-    start: {
-      type: '',
-      time: '',
-    },
-    end: {
-      type: '',
-      time: '',
+    startTime: '',
+    endTime: '',
+  },
+
+  onLoad(option) {
+    const { data } = option
+    if (data) {
+      const parseData = JSON.parse(data)
+      const { color, sheetName, startTime, endTime } = parseData || {}
+      this.setData({
+        name: sheetName,
+        activeColor: color,
+        startTime,
+        endTime,
+      })
     }
   },
 
@@ -35,23 +42,20 @@ Page({
   bindStartPickerChange(e) {
     const { value = [] } = e.detail
     this.setData({
-      'start.type': value[0] === 0 ? 'today' : 'tomorrow',
-      'start.time': `${multiArray[1][value[1]]}:${multiArray[3][value[3]]}`,
+      startTime: value
     })
   },
 
   bindEndPickerChange(e) {
     const { value = [] } = e.detail
     this.setData({
-      'end.type': value[0] === 0 ? 'today' : 'tomorrow',
-      'end.time': `${multiArray[1][value[1]]}:${multiArray[3][value[3]]}`,
+      endTime: value
     })
+
   },
 
   handleSave() {
-    const { name, activeColor, start, end } = this.data
-    const { type: startType, time: startTime } = start
-    const { type: endType, time: endTime } = end
+    const { name, activeColor, startTime, endTime } = this.data
 
     if (!name) {
       wx.showToast({
@@ -62,7 +66,7 @@ Page({
       return
     }
 
-    if (name.length>4) {
+    if (name.length > 4) {
       wx.showToast({
         title: '班次名称最多支持4个字符',
         icon: 'none',
@@ -73,9 +77,7 @@ Page({
 
     const params = {
       sheetName: name,
-      startType: 'today',
       startTime,
-      endType,
       endTime,
       color: activeColor,
     }
@@ -88,6 +90,7 @@ Page({
       data: {
         ...params, 
         action: 'add'
+
       }
     }).then(res => {
       wx.hideLoading()
@@ -101,7 +104,7 @@ Page({
       }, 2000)
     }).catch(e => {
       wx.hideLoading()
-      console.error('addSheetSettingInfo', e)
+      console.error('addsheetSetList', e)
       wx.showToast({
         title: '服务异常，请稍后再试',
         icon: 'none',

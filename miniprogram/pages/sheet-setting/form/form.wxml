@@ -4,36 +4,35 @@
     class="name-input"
     placeholder="请填写班次名称"
     bindinput="onNameInput"
+    value="{{name}}"
   ></input>
 
   <view class="action-title">班次时段</view>
   <view class="time-wrapper">
     <picker
       class="time-item time-start"
-      mode="multiSelector"
+      mode="time"
       bindchange="bindStartPickerChange"
-      range="{{multiArray}}"
     >
       <view class="time-txt">
         开始时间
         <text class="cuIcon-right text-gray"></text>
       </view>
       <view class="time-tips text-green">
-        {{start.time || '选择时间'}}
+        {{startTime || '选择时间'}}
       </view>
     </picker>
     <picker
       class="time-item"
-      mode="multiSelector"
+      mode="time"
       bindchange="bindEndPickerChange"
-      range="{{multiArray}}"
     >
       <view class="time-txt">
         结束时间
         <text class="cuIcon-right text-gray"></text>
       </view>
       <view class="time-tips text-green">
-        {{end.time || '选择时间'}}
+        {{endTime || '选择时间'}}
       </view>
     </picker>
   </view>

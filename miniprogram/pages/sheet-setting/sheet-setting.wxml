@@ -1,13 +1,13 @@
 <view class="page-setting">
   <view class="sheet-list-info">* 班次列表</view>
-  <view wx:for="{{sheetList}}" class="sheet-item" wx:key="_id">
+  <view class="sheet-item" wx:for="{{sheetList}}" wx:key="_id" bindtap="handleEnter" data-item="{{item}}">
     <view class="item-colorbox" style="background: {{item.color}}">{{item.sheetName}}</view>
     <view class="item-time">
       {{item.startTime ? item.startTime+' ~ '+ item.endTime : ''}}
       <image class="item-arrow" src="../../images/arrow.png"></image>
     </view>
   </view>
-  <view class="add-new" bindtap="handleToForm" data-type="new">
+  <view class="add-new" bindtap="handleNewSheet">
     新建班次
   </view>
 </view> 

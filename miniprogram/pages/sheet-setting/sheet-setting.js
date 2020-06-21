@@ -32,12 +32,15 @@ Page({
       })
     })
   },
-  handleToForm(e) {
-    const { type } = e.currentTarget.dataset
-    if (type) {
-      wx.navigateTo({
-        url: '/pages/sheet-setting/form/form',
-      })
-    }
+  handleNewSheet(e) {
+    wx.navigateTo({
+      url: '/pages/sheet-setting/form/form',
+    })
+  },
+  handleEnter(e) {
+    const { item } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/sheet-setting/form/form?data=${JSON.stringify(item)}`,
+    })
   }
 })
