@@ -20,10 +20,11 @@
 
 .calendar .calendar-header .header-day {
   padding: 0 30rpx;
-  font-family: PingFangSC-Medium;
+  font-family: DinCond;
+  font-weight: bold;
   /* font-weight: 600; */
   font-size: 120rpx;
-  line-height: 120rpx;
+  line-height: 100rpx;
 }
 
 .calendar .calendar-header .header-info {
@@ -48,7 +49,7 @@
 .calendar .calendar-header .header-info .month {
   margin-top: 6rpx;
   font-size: 28rpx;
-  font-family: PingFangSC-Medium;
+  font-family: DinPro;
 }
 
 .calendar .calendar-empty {
@@ -92,6 +93,7 @@
 }
 .calendar .calendar-day .day-item .day-txt {
   font-size: 32rpx;
+  font-family: DinPro;
 }
 .calendar .calendar-day .day-item .work-type {
   padding: 4rpx 0;

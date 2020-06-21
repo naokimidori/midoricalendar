@@ -7,7 +7,7 @@
       <image class="item-arrow" src="../../images/arrow.png"></image>
     </view>
   </view>
-  <view class="add-new" bindtap="handleNewSheet">
+  <view wx:if="{{sheetList.length < 21}}" class="add-new" bindtap="handleNewSheet">
     新建班次
   </view>
 </view> 
