@@ -98,6 +98,4 @@
 
 .page-sheet-form .btn-wrapper .btn-save {
   width: 300rpx;
-  color: #fff;
-  background-color: #39b54a;
 }

@@ -51,7 +51,7 @@
     </view>
   </view>
   <view class="btn-wrapper">
-    <button class="btn-del" disabled>删除</button>
-    <button class="btn-save" bindtap="handleSave">保存</button>
+    <button class="btn-del" disabled="{{!isEdit}}" bindtap="handleDelete">删除</button>
+    <button class="btn-save" type="primary" bindtap="handleSave" disabled="{{!name || !activeColor}}">保存</button>
   </view>
 </view>

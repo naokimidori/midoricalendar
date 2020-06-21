@@ -15,6 +15,12 @@ exports.main = async (event, context) => {
     case 'query': {
       return querySheetSetList(event)
     }
+    case 'update': {
+      return updateSheetSet(event)
+    }
+    case 'delete': {
+      return deleteSheetSet(event)
+    }
     default: {
       return
     }
@@ -40,4 +46,24 @@ async function querySheetSetList(event) {
       'userInfo.openId': openId
     })
     .get()
+}
+
+async function updateSheetSet(event) {
+  const { _id, sheetName, startTime, endTime, color, action } = event || {}
+  return await db.collection('sheet_set_list')
+    .doc(_id)
+    .update({
+      data: {
+        sheetName,
+        startTime,
+        endTime,
+        color,
+        action,
+      }
+    })
+}
+
+async function deleteSheetSet(event) {
+  const { _id } = event || {}
+  return await db.collection('sheet_set_list').doc(_id).remove();
 }
