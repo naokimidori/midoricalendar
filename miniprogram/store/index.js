@@ -5,6 +5,7 @@ export default {
     mainBgColor: '#ffffff',
     calendar: {},
     currentCity: '',
+    sheetList: [],
   },
   //无脑全部更新，组件或页面不需要声明 use
   //updateAll: true,

@@ -21,7 +21,7 @@
 				<view class="calendar-day">
 					<view wx:for="{{calendar.first}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}">
 						<view class="day-txt">{{x.day}}</view>
-						<view class="work-type">早班啊</view>
+						<view class="work-type"></view>
 					</view>
 				</view>
 			</swiper-item>
@@ -31,9 +31,17 @@
 					<view class="week-item" wx:for="{{weekText}}" wx:key="item">{{item}}</view>
 				</view>
 				<view class="calendar-day">
-					<view wx:for="{{calendar.second}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}">
+					<view
+						wx:for="{{calendar.second}}"
+						wx:for-item='x' wx:key='date'
+						class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+						data-date="{{x._id}}"
+						bindtap="handleClickDay"
+					>
 						<view class="day-txt">{{x.day}}</view>
-						<view class="work-type">hahah</view>
+						<view class="work-type" wx:if="{{x.name}}">
+							{{x.name}}
+						</view>
 					</view>
 				</view>
 			</swiper-item>
@@ -45,7 +53,7 @@
 				<view class="calendar-day">
 					<view wx:for="{{calendar.third}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}">
 						<view class="day-txt">{{x.day}}</view>
-						<view class="work-type">早班啊啊</view>
+						<view class="work-type"></view>
 					</view>
 				</view>
 			</swiper-item>
@@ -70,3 +78,10 @@
 		<view class="agenda-title">今日日程</view>
 	</view>
 </view>
+
+<calendarModal
+	showModal="{{showModal}}"
+	date="{{clickedDay}}"
+	bind:cancelEvent="handleCloseModal"
+	bind:confirmEvent="handleConfirmModal"
+/>

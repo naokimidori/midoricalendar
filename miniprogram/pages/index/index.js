@@ -6,6 +6,7 @@ const options = {
   use: [
     'mainBgColor',
     'currentCity',
+    'sheetList'
   ],
   data: {
     currentMonth: '',
@@ -25,9 +26,11 @@ const options = {
     },
     swiperMap: ['first', 'second', 'third', 'fourth'],
     swiperIndex: 1,
+    clickedDay: '',
   },
   onLoad() {
     this.getLocation();
+    this.getAllSheetSetting();
     this.init();
   },
   getLocation() {
@@ -60,6 +63,34 @@ const options = {
         }
       }
     })
+  },
+  handleClickDay(e) {
+    const { date } = e.currentTarget.dataset
+    if (date) {
+      this.setData({
+        showModal: true,
+        clickedDay: date
+      })
+    }
+  },
+  handleCloseModal() {
+    this.setData({
+      showModal: false,
+      clickedDay: '',
+    })
+  },
+  handleConfirmModal(e) {
+    const { setting } = e.detail || {}
+
+    // wx.cloud.callFunction({
+    //   name: 'calendarSheet',
+    //   data
+    // })
+    
+    this.setData({
+      showModal: false,
+    })
+    console.log('QUEDING', e.detail)
   },
   /**
    * 初始化组件
@@ -238,8 +269,8 @@ const options = {
         month: this.formatMonth(parseInt(month) - 1)
       },
       thisMonth = {
-        year,
         month,
+        year: year + '',
         num: this.getNumOfDays(year, month)
       },
       nextMonth = {
@@ -286,8 +317,79 @@ const options = {
   },
   currentMonthDays(year, month) {
     const numOfDays = this.getNumOfDays(year, month)
+    this.getCalendarByMonth()
     return this.generateDays(year, month, numOfDays)
   },
+
+  /**
+   * 
+   * 生成日详情
+   * @param {any} year 
+   * @param {any} month 
+   * @param {any} daysNum 
+   * @param {boolean} [option={
+   * 		startNum:1,
+   * 		grey: false
+   * 	}] 
+   * @returns Array 日期对象数组
+   */
+  generateDays(year, month, daysNum, option = {
+    startNum: 1,
+    notCurrent: false
+  }) {
+    const weekMap = ['一', '二', '三', '四', '五', '六', '日']
+    let days = []
+    for (let i = option.startNum; i <= daysNum; i++) {
+      let week = weekMap[new Date(year, month - 1, i).getUTCDay()]
+      let day = this.formatDay(i)
+      days.push({
+        _id: `${year}${month}${day}`,
+        date: `${year}-${month}-${day}`,
+        event: false,
+        day,
+        week,
+        month,
+        year: year + ''
+      })
+    }
+    return days
+  },
+
+  /**
+   * 获取所有的班次数据
+   */
+  getAllSheetSetting() {
+    wx.cloud.callFunction({
+      name: 'sheetSetList',
+      data: {
+        action: 'query'
+      }
+    }).then(res => {
+      const { result = {} } = res || {}
+      if (result && result.data) {
+        this.store.data.sheetList = result.data || []
+      }
+    }).catch(e => {
+      this.store.data.sheetList = []
+    })
+  },
+
+  /** 
+   * 请求对应月份的日历
+   * @param {string} monthStr
+   */
+  getCalendarByMonth(monthStr) {
+    wx.cloud.callFunction({
+      name: 'calendarSheet',
+      data: {
+        action: 'query',
+        month: '202006'
+      }
+    }).then(res => {
+      console.log(222, res)
+    })
+  },
+
   /**
    * 生成上个月应显示的天
    * @param {any} year 
@@ -356,39 +458,7 @@ const options = {
 
     return dateOfMonth;
   },
-  /**
-   * 
-   * 生成日详情
-   * @param {any} year 
-   * @param {any} month 
-   * @param {any} daysNum 
-   * @param {boolean} [option={
-   * 		startNum:1,
-   * 		grey: false
-   * 	}] 
-   * @returns Array 日期对象数组
-   */
-  generateDays(year, month, daysNum, option = {
-    startNum: 1,
-    notCurrent: false
-  }) {
-    const weekMap = ['一', '二', '三', '四', '五', '六', '日']
-    let days = []
-    for (let i = option.startNum; i <= daysNum; i++) {
-      let week = weekMap[new Date(year, month - 1, i).getUTCDay()]
-      let day = this.formatDay(i)
-      days.push({
-        _id: `${year}${month}${day}`,
-        date: `${year}-${month}-${day}`,
-        event: false,
-        day,
-        week,
-        month,
-        year: year + ''
-      })
-    }
-    return days
-  },
+
   /**
    * 
    * 月份处理

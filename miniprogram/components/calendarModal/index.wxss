@@ -1,0 +1,41 @@
+@import "/colorui/main.wxss";
+@import "/colorui/icon.wxss";
+
+.calendar-modal .list-container {
+  padding: 20rpx 45rpx 0;
+}
+
+.calendar-modal .list-title {
+  text-align: left;
+  padding-bottom: 20rpx;
+}
+
+.calendar-modal .list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.calendar-modal .list-wrapper .list-item {
+  width: 120rpx;
+  height: 68rpx;
+  margin-right: 36rpx;
+  margin-bottom: 30rpx;
+  background-color: #c5c5c5;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6rpx;
+}
+
+.calendar-modal .list-wrapper .item-empty {
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #5a5a5a;
+  border: 1rpx solid #ccc;
+}
+
+.calendar-modal .list-wrapper .list-item:nth-child(4n) {
+  margin-right: 0;
+}

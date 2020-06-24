@@ -1,4 +1,7 @@
-Page({
+import create from '../../utils/create';
+import store from '../../store/index';
+
+const options = {
   data: {
     sheetList: []
   },
@@ -21,6 +24,7 @@ Page({
         this.setData({
           sheetList: result.data || []
         })
+        this.store.data.sheetList = result.data || []
       }
     }).catch(e => {
       console.error('querySheet', e)
@@ -43,4 +47,6 @@ Page({
       url: `/pages/sheet-setting/form/form?data=${JSON.stringify(item)}`,
     })
   }
-})
+}
+
+create.Page(store, options);

@@ -1,5 +1,6 @@
 {
   "backgroundColor": "#93c7b1",
   "usingComponents": {
+    "calendarModal": "../../components/calendarModal/index"
   }
 }

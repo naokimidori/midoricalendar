@@ -96,7 +96,10 @@
   font-family: DinPro;
 }
 .calendar .calendar-day .day-item .work-type {
-  padding: 4rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40rpx;
   margin-top: 4rpx;
   font-size: 20rpx;
   color: #fff;

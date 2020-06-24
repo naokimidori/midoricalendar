@@ -28,7 +28,6 @@ exports.main = async (event, context) => {
 }
 
 async function addSheetSetList(event) {
-  const wxContext = cloud.getWXContext()
 
   return await db.collection('sheet_set_list').add({
     data: {
