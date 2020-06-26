@@ -1,12 +1,15 @@
 <view class="calendar-modal cu-modal {{showModal ? 'show' : ''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
-      <view class="content">{{date}}</view>
+      <view class="content">
+        {{modalData.dateLong || ''}}
+        <text wx:if="{{modalData.week}}">周{{modalData.week}}</text>
+      </view>
       <view class="action" bindtap="hideModal">
         <text class="cuIcon-close text-red"></text>
       </view>
     </view>
-    <view class="list-container">
+    <view class="list-container" wx:if="{{sheetList.length>0}}">
       <view class="list-title">
         当前选择：{{curName}}
       </view>
@@ -18,7 +21,7 @@
           wx:key="_id"
           data-item="{{item}}"
           bindtap="onSelectItem"
-          style="background: {{curId === item._id ? item.color : '#c5c5c5'}}"
+          style="background: {{curSheetId === item._id ? item.color : '#c5c5c5'}}"
         >
           {{item.sheetName}}
         </view>

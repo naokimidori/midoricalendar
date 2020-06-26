@@ -7,48 +7,68 @@ create.Component({
       type: Boolean,
       value: false,
     },
-    date: {
-      type: String,
-      value: '',
+    modalData: {
+      type: Object,
+      value: {},
+      observer: function(newVal) {
+        const { sheetId = '', sheetName = ''} = newVal || {}
+        if (sheetId) {
+          this.setData({
+            curName: sheetName,
+            curSheetId: sheetId
+          })
+        } else {
+          this.setData({
+            curName: '空',
+            curSheetId: '',
+            type: 'OFF',
+            curItem: {},
+          })
+        }
+      }
     },
   },
   data: {
-    curId: '',
+    type: 'OFF',
+    curSheetId: '',
     curName: '空',
-    curColor: '',
+    curItem: {},
   },
   methods: {
     hideModal() {
       this.triggerEvent("cancelEvent")
     },
     confirmModal() {
-      const { curItem } = this.data
-      let modalData = {
-        setting: curItem,
-      } 
-      this.triggerEvent("confirmEvent", modalData)
+      const { type, curSheetId } = this.data
+      let setData = {
+        setting: {
+          sheetId: curSheetId,
+          type,
+        }
+      }
+      this.triggerEvent("confirmEvent", setData)
     },
     onSelectItem(e) {
       const { item } = e.currentTarget.dataset
-      const { _id, color, sheetName, startTime, endTime } = item || {}
+      const { _id, sheetName, startTime, endTime } = item || {}
 
       let _text = sheetName
       if (startTime && endTime) {
         _text = `${_text} ${startTime} ~ ${endTime}` 
       }
-
       this.setData({
-        curId: _id || '',
+        type:'ON',
+        curSheetId: _id || '',
         curName: _text || '',
-        curColor: color || '',
         curItem: item || {}
       })
     },
     clearSelct() {
       this.setData({
-        curId: '',
+        type:'OFF',
+        curSheetId: '',
         curName: '空',
-        curColor: '',
+        curItem: {},
       })
     }
   }

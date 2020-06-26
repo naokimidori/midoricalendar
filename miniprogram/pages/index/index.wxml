@@ -12,7 +12,12 @@
 			</view>
 		</view>
 		<view class="calendar-empty"></view>
-		<swiper current="{{swiperIndex}}" circular="true" class="swiper-box" bindchange='swiperChange'>
+		<swiper
+			current="{{swiperIndex}}"
+			circular="true"
+			class="swiper-box"
+			bindchange='swiperChange'
+		>
 			<!-- 前一月日历 -->
 			<swiper-item>
 				<view class="calendar-week">
@@ -25,6 +30,7 @@
 						wx:key='date'
 						class="day-item {{x._month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
 						data-date="{{x.dateId}}"
+						data-item="{{x}}"
 						bindtap="handleClickDay"
 					>
 						<view class="day-txt">{{x.day}}</view>
@@ -46,9 +52,11 @@
 				<view class="calendar-day">
 					<view
 						wx:for="{{calendar.second}}"
-						wx:for-item='x' wx:key='date'
+						wx:for-item='x'
+						wx:key='date'
 						class="day-item {{x._month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
 						data-date="{{x.dateId}}"
+						data-item="{{x}}"
 						bindtap="handleClickDay"
 					>
 						<view class="day-txt">{{x.day}}</view>
@@ -74,6 +82,7 @@
 						wx:key='date'
 						class="day-item {{x._month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
 						data-date="{{x.dateId}}"
+						data-item="{{x}}"
 						bindtap="handleClickDay"
 					>
 						<view class="day-txt">{{x.day}}</view>
@@ -99,6 +108,7 @@
 						wx:key='date'
 						class="day-item {{x._month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
 						data-date="{{x.dateId}}"
+						data-item="{{x}}"
 						bindtap="handleClickDay"
 					>
 						<view class="day-txt">{{x.day}}</view>
@@ -124,7 +134,7 @@
 
 <calendarModal
 	showModal="{{showModal}}"
-	date="{{clickedDay}}"
+	modalData="{{clickedDayItem}}"
 	bind:cancelEvent="handleCloseModal"
 	bind:confirmEvent="handleConfirmModal"
 />

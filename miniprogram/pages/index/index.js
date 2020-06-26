@@ -28,6 +28,7 @@ const options = {
     swiperIndex: 1,
     clickedDay: '',
     clickedMonth: '',
+    clickedDayItem: {},
   },
   onLoad() {
     this.getLocation();
@@ -66,28 +67,27 @@ const options = {
     })
   },
   handleClickDay(e) {
-    const { date } = e.currentTarget.dataset
+    const { date = '', item = {} } = e.currentTarget.dataset
     const month = date.substr(0, 6)
     if (date) {
       this.setData({
         showModal: true,
         clickedDay: date,
         clickedMonth: month,
+        clickedDayItem: item,
       })
     }
   },
   handleCloseModal() {
-    this.setData({
-      showModal: false,
-      clickedDay: '',
-      clickedMonth: '',
-    })
+    this.resetData()
   },
   handleConfirmModal(e) {
     const { setting } = e.detail || {}
-    const { clickedDay, clickedMonth } = this.data
+    const { clickedDay, clickedMonth, clickedDayItem } = this.data
+    const { year, _month, sheetId } = clickedDayItem || {}
+    const { type, sheetId: newSheetId } = setting || {}
 
-    if (clickedDay) {
+    if (clickedDay && newSheetId && newSheetId !== sheetId) {
       wx.cloud.callFunction({
         name: 'calendarSheet',
         data: {
@@ -95,17 +95,29 @@ const options = {
           detail: {
             date: clickedDay,
             month: clickedMonth,
-            color: setting.color,
-            sheetName: setting.sheetName,
-            startTime: setting.startTime,
-            endTime: setting.endTime,
+            sheetId: newSheetId,
           }
         }
-      }).then(console.log)
+      }).then(async(res) => {
+        wx.showLoading(' ')
+        let calendar = await this.generateThreeMonths(year, _month)
+        this.setData({
+          calendar,
+        })
+        wx.hideLoading()
+        this.resetData()
+      })
+    } else if (clickedDay && type === 'OFF') {
+      console.log('type === OFF')
+      this.resetData()
     }
-
+  },
+  resetData() {
     this.setData({
       showModal: false,
+      clickedDay: '',
+      clickedMonth: '',
+      clickedDayItem: {},
     })
   },
   /**  
@@ -116,7 +128,7 @@ const options = {
       month = this.formatMonth(date.getMonth() + 1),
       year = date.getFullYear(),
       day = this.formatDay(date.getDate()),
-      today = `${year}-${month}-${day}`
+      today = `${year}${month}${day}`
     wx.showLoading(' ')
     let calendar = await this.generateThreeMonths(year, month)
     wx.hideLoading()
@@ -374,6 +386,7 @@ const options = {
           days.push({
             dateId: `${year}${month}${day}`,
             date: `${year}${month}${day}`,
+            dateLong:`${year}-${month}-${day}`,
             day,
             week,
             _month: month,
@@ -387,12 +400,18 @@ const options = {
             month: `${year}${month}`,
           }
         }).then(res => {
-          const sheets = res.result.data || []
-          const list = sheets.reduce((pre = [], cur) => {
+          const { sheetList = [] } = this.store.data
+          const calendarSheets = res.result.data || []
+          const list = calendarSheets.reduce((pre = [], cur) => {
             const target= pre.find(e => e.dateId == cur.date)
-            if(target){
-              Object.assign(target,cur)
-            }else{
+            if (target) {
+              const dayInfos = sheetList.find(x => x._id === cur.sheetId)
+              if (dayInfos) {
+                Object.assign(target, dayInfos, cur)
+              } else {
+                Object.assign(target, cur)
+              }
+            } else {
               pre.push(cur)
             }
             return pre
