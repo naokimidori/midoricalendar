@@ -27,6 +27,7 @@ const options = {
     swiperMap: ['first', 'second', 'third', 'fourth'],
     swiperIndex: 1,
     clickedDay: '',
+    clickedMonth: '',
   },
   onLoad() {
     this.getLocation();
@@ -66,10 +67,12 @@ const options = {
   },
   handleClickDay(e) {
     const { date } = e.currentTarget.dataset
+    const month = date.substr(0, 6)
     if (date) {
       this.setData({
         showModal: true,
-        clickedDay: date
+        clickedDay: date,
+        clickedMonth: month,
       })
     }
   },
@@ -77,31 +80,47 @@ const options = {
     this.setData({
       showModal: false,
       clickedDay: '',
+      clickedMonth: '',
     })
   },
   handleConfirmModal(e) {
     const { setting } = e.detail || {}
+    const { clickedDay, clickedMonth } = this.data
 
-    // wx.cloud.callFunction({
-    //   name: 'calendarSheet',
-    //   data
-    // })
+    if (clickedDay) {
+      wx.cloud.callFunction({
+        name: 'calendarSheet',
+        data: {
+          action: 'addOrUpdate',
+          detail: {
+            date: clickedDay,
+            month: clickedMonth,
+            color: setting.color,
+            sheetName: setting.sheetName,
+            startTime: setting.startTime,
+            endTime: setting.endTime,
+          }
+        }
+      }).then(console.log)
+    }
+
+
     
     this.setData({
       showModal: false,
     })
-    console.log('QUEDING', e.detail)
   },
   /**
    * 初始化组件
    */
-  init: function() {
+  async init() {
     const date = new Date(),
       month = this.formatMonth(date.getMonth() + 1),
       year = date.getFullYear(),
       day = this.formatDay(date.getDate()),
       today = `${year}-${month}-${day}`
-    let calendar = this.generateThreeMonths(year, month)
+    let calendar = await this.generateThreeMonths(year, month)
+
     this.setData({
       currentMonth: month,
       currentYear: year,
@@ -205,7 +224,7 @@ const options = {
    * @param {any} year 
    * @param {any} month 
    */
-  changeDate(year, month) {
+  async changeDate(year, month) {
     let {
       day,
       today,
@@ -213,7 +232,7 @@ const options = {
       currentDay,
       currentYear,
     } = this.data,
-    calendar = this.generateThreeMonths(year, month),
+    calendar = await this.generateThreeMonths(year, month),
     date = `${year}-${month}`
     date.indexOf(today) === -1 ?
       day = '01' :
@@ -236,7 +255,7 @@ const options = {
    * @param {any} month 
    * @returns {object} calendar
    */
-  generateThreeMonths(year, month) {
+  async generateThreeMonths(year, month) {
     let {
       swiperIndex,
       swiperMap,
@@ -247,11 +266,11 @@ const options = {
       nextKey = swiperMap[swiperIndex + 1 === 4 ? 0 : swiperIndex + 1],
       time = this.countMonth(year, month)
     delete calendar[lastKey]
-    calendar[lastKey] = this.generateAllDays(time.lastMonth.year, time.lastMonth.month)
+    calendar[lastKey] = await this.generateAllDays(time.lastMonth.year, time.lastMonth.month)
     delete calendar[thisKey]
-    calendar[thisKey] = this.generateAllDays(time.thisMonth.year, time.thisMonth.month)
+    calendar[thisKey] = await this.generateAllDays(time.thisMonth.year, time.thisMonth.month)
     delete calendar[nextKey]
-    calendar[nextKey] = this.generateAllDays(time.nextMonth.year, time.nextMonth.month)
+    calendar[nextKey] = await this.generateAllDays(time.nextMonth.year, time.nextMonth.month)
     // 注入store
     this.store.data.calendar = calendar;
 
@@ -308,17 +327,19 @@ const options = {
    * @param {any} month 
    * @returns Array
    */
-  generateAllDays(year, month) {
-    let lastMonth = this.lastMonthDays(year, month),
-      thisMonth = this.currentMonthDays(year, month),
-      nextMonth = this.nextMonthDays(year, month),
+  async generateAllDays(year, month) {
+    let lastMonth = await this.lastMonthDays(year, month),
+      thisMonth = await this.currentMonthDays(year, month),
+      nextMonth = await this.nextMonthDays(year, month),
       days = [].concat(lastMonth, thisMonth, nextMonth)
+
     return days
   },
-  currentMonthDays(year, month) {
+  async currentMonthDays(year, month) {
     const numOfDays = this.getNumOfDays(year, month)
-    this.getCalendarByMonth()
-    return this.generateDays(year, month, numOfDays)
+    const days = await this.generateDays(year, month, numOfDays)
+    
+    return days
   },
 
   /**
@@ -337,22 +358,54 @@ const options = {
     startNum: 1,
     notCurrent: false
   }) {
-    const weekMap = ['一', '二', '三', '四', '五', '六', '日']
-    let days = []
-    for (let i = option.startNum; i <= daysNum; i++) {
-      let week = weekMap[new Date(year, month - 1, i).getUTCDay()]
-      let day = this.formatDay(i)
-      days.push({
-        _id: `${year}${month}${day}`,
-        date: `${year}-${month}-${day}`,
-        event: false,
-        day,
-        week,
-        month,
-        year: year + ''
-      })
-    }
-    return days
+    return new Promise((resolve, reject) => {
+      const { notCurrent, startNum } = option;
+      if (notCurrent) {
+        let days = []
+        for (let i = startNum; i <= daysNum; i++) {
+          days.push({})
+        }
+        resolve(days)
+      } else {
+        let days = []
+        const weekMap = ['一', '二', '三', '四', '五', '六', '日']
+        for (let i = option.startNum; i <= daysNum; i++) {
+          let week = weekMap[new Date(year, month - 1, i).getUTCDay()]
+          let day = this.formatDay(i)
+          days.push({
+            dateId: `${year}${month}${day}`,
+            date: `${year}-${month}-${day}`,
+            event: false,
+            day,
+            week,
+            month,
+            year: year + ''
+          })
+        }
+        wx.cloud.callFunction({
+          name: 'calendarSheet',
+          data: {
+            action: 'query',
+            month: `${year}${month}`,
+          }
+        }).then(res => {
+          const sheets = res.result.data || []
+          const list = sheets.reduce((pre = [], cur) => {
+            const target= pre.find(e => e.dateId == cur.date)
+            if(target){
+              Object.assign(target,cur)
+            }else{
+              pre.push(cur)
+            }
+            return pre
+          }, days)
+          resolve(list)
+        }).catch(e => {
+          console.error(e)
+          resolve(days)
+        })
+      }
+    })
   },
 
   /**
@@ -374,29 +427,13 @@ const options = {
     })
   },
 
-  /** 
-   * 请求对应月份的日历
-   * @param {string} monthStr
-   */
-  getCalendarByMonth(monthStr) {
-    wx.cloud.callFunction({
-      name: 'calendarSheet',
-      data: {
-        action: 'query',
-        month: '202006'
-      }
-    }).then(res => {
-      console.log(222, res)
-    })
-  },
-
   /**
    * 生成上个月应显示的天
    * @param {any} year 
    * @param {any} month 
    * @returns 
    */
-  lastMonthDays(year, month) {
+  async lastMonthDays(year, month) {
     const lastMonth = this.formatMonth(parseInt(month) - 1),
       lastMonthYear = parseInt(month) === 1 && parseInt(lastMonth) === 12 ?
       `${parseInt(year) - 1}` :
@@ -409,7 +446,7 @@ const options = {
     }
     const startDay = lastNum - startWeek
 
-    return this.generateDays(lastMonthYear, lastMonth, lastNum, {
+    return await this.generateDays(lastMonthYear, lastMonth, lastNum, {
       startNum: startDay,
       notCurrent: true
     })
@@ -420,7 +457,7 @@ const options = {
    * @param {any} month
    * @returns 
    */
-  nextMonthDays(year, month) {
+  async nextMonthDays(year, month) {
     const nextMonth = this.formatMonth(parseInt(month) + 1),
       nextMonthYear = parseInt(month) === 12 && parseInt(nextMonth) === 1 ?
       `${parseInt(year) + 1}` :
@@ -437,7 +474,7 @@ const options = {
     } else {
       daysNum = 6 - endWeek
     }
-    return this.generateDays(nextMonthYear, nextMonth, daysNum, {
+    return await this.generateDays(nextMonthYear, nextMonth, daysNum, {
       startNum: 1,
       notCurrent: true
     })

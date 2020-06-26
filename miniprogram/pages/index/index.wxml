@@ -19,9 +19,22 @@
 					<view class="week-item" wx:for="{{weekText}}" wx:key="item">{{item}}</view>
 				</view>
 				<view class="calendar-day">
-					<view wx:for="{{calendar.first}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}">
+					<view
+						wx:for="{{calendar.first}}"
+						wx:for-item='x'
+						wx:key='date'
+						class="day-item{{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+						data-date="{{x.dateId}}"
+						bindtap="handleClickDay"
+					>
 						<view class="day-txt">{{x.day}}</view>
-						<view class="work-type"></view>
+						<view
+							class="work-type"
+							wx:if="{{x.sheetName}}"
+							style="background:{{x.color}}"
+						>
+							{{x.sheetName}}
+						</view>
 					</view>
 				</view>
 			</swiper-item>
@@ -35,12 +48,16 @@
 						wx:for="{{calendar.second}}"
 						wx:for-item='x' wx:key='date'
 						class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
-						data-date="{{x._id}}"
+						data-date="{{x.dateId}}"
 						bindtap="handleClickDay"
 					>
 						<view class="day-txt">{{x.day}}</view>
-						<view class="work-type" wx:if="{{x.name}}">
-							{{x.name}}
+						<view
+							class="work-type"
+							wx:if="{{x.sheetName}}"
+							style="background:{{x.color}}"
+						>
+							{{x.sheetName}}
 						</view>
 					</view>
 				</view>
@@ -51,9 +68,22 @@
 					<view class="week-item" wx:for="{{weekText}}" wx:key="item">{{item}}</view>
 				</view>
 				<view class="calendar-day">
-					<view wx:for="{{calendar.third}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}">
+					<view
+						wx:for="{{calendar.third}}"
+						wx:for-item='x'
+						wx:key='date'
+						class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+						data-date="{{x.dateId}}"
+						bindtap="handleClickDay"
+					>
 						<view class="day-txt">{{x.day}}</view>
-						<view class="work-type"></view>
+						<view
+							class="work-type"
+							wx:if="{{x.sheetName}}"
+							style="background:{{x.color}}"
+						>
+							{{x.sheetName}}
+						</view>
 					</view>
 				</view>
 			</swiper-item>
@@ -63,9 +93,22 @@
 					<view class="week-item" wx:for="{{weekText}}" wx:key="item">{{item}}</view>
 				</view>
 				<view class="calendar-day">
-					<view wx:for="{{calendar.fourth}}" wx:for-item='x' wx:key='date' class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}">
+					<view
+						wx:for="{{calendar.fourth}}"
+						wx:for-item='x'
+						wx:key='date'
+						class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+						data-date="{{x.dateId}}"
+						bindtap="handleClickDay"
+					>
 						<view class="day-txt">{{x.day}}</view>
-						<view class="work-type">早班啊</view>
+						<view
+							class="work-type"
+							wx:if="{{x.sheetName}}"
+							style="background:{{x.color}}"
+						>
+							{{x.sheetName}}
+						</view>
 					</view>
 				</view>
 			</swiper-item>
