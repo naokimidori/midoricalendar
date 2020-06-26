@@ -104,14 +104,12 @@ const options = {
       }).then(console.log)
     }
 
-
-    
     this.setData({
       showModal: false,
     })
   },
-  /**
-   * 初始化组件
+  /**  
+   * 初始化
    */
   async init() {
     const date = new Date(),
@@ -119,8 +117,9 @@ const options = {
       year = date.getFullYear(),
       day = this.formatDay(date.getDate()),
       today = `${year}-${month}-${day}`
+    wx.showLoading(' ')
     let calendar = await this.generateThreeMonths(year, month)
-
+    wx.hideLoading()
     this.setData({
       currentMonth: month,
       currentYear: year,
@@ -139,7 +138,7 @@ const options = {
    * 左右滑动
    * @param {any} e 
    */
-  swiperChange(e) {
+  async swiperChange(e) {
     const lastIndex = this.data.swiperIndex,
       currentIndex = e.detail.current
     let flag = false,
@@ -186,7 +185,7 @@ const options = {
 
     time = this.countMonth(year, month)
     calendar[change] = null
-    calendar[change] = this.generateAllDays(time[key].year, time[key].month)
+    calendar[change] = await this.generateAllDays(time[key].year, time[key].month)
 
     this.setData({
       swiperIndex: currentIndex,
@@ -374,11 +373,10 @@ const options = {
           let day = this.formatDay(i)
           days.push({
             dateId: `${year}${month}${day}`,
-            date: `${year}-${month}-${day}`,
-            event: false,
+            date: `${year}${month}${day}`,
             day,
             week,
-            month,
+            _month: month,
             year: year + ''
           })
         }

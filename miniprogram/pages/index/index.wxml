@@ -23,7 +23,7 @@
 						wx:for="{{calendar.first}}"
 						wx:for-item='x'
 						wx:key='date'
-						class="day-item{{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+						class="day-item {{x._month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
 						data-date="{{x.dateId}}"
 						bindtap="handleClickDay"
 					>
@@ -47,7 +47,7 @@
 					<view
 						wx:for="{{calendar.second}}"
 						wx:for-item='x' wx:key='date'
-						class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+						class="day-item {{x._month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
 						data-date="{{x.dateId}}"
 						bindtap="handleClickDay"
 					>
@@ -72,7 +72,7 @@
 						wx:for="{{calendar.third}}"
 						wx:for-item='x'
 						wx:key='date'
-						class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+						class="day-item {{x._month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
 						data-date="{{x.dateId}}"
 						bindtap="handleClickDay"
 					>
@@ -97,7 +97,7 @@
 						wx:for="{{calendar.fourth}}"
 						wx:for-item='x'
 						wx:key='date'
-						class="day-item {{x.month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
+						class="day-item {{x._month === month ? '': 'gray'}} {{x.date === today ? 'today' : ''}}"
 						data-date="{{x.dateId}}"
 						bindtap="handleClickDay"
 					>
