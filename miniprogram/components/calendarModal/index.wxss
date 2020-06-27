@@ -35,7 +35,8 @@
 .calendar-modal .list-wrapper .list-item {
   width: 120rpx;
   height: 68rpx;
-  margin-right: 36rpx;
+  margin-left: 1rpx;
+  margin-right: 35rpx;
   margin-bottom: 30rpx;
   background-color: #c5c5c5;
   color: #fff;
