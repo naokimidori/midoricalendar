@@ -2,7 +2,7 @@ export default {
   miniApp: '小树日历',
   miniAppDesc: '一款可以让你提高生活效率的日历',
   miniSlogan: 'みどり　へ',
-  version: '1.0.0',
+  version: '1.0.1',
   amapGeoUrl: 'https://restapi.amap.com/v3/geocode/regeo',
   amapKey: 'aadcb3316c0472d20f026b75e326c34a',
   tipQrCode: 'cloud://calendar-prod-w7kpb.6361-calendar-prod-w7kpb-1302089220/project_pics/zanshang.jpg',

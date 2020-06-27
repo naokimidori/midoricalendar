@@ -70,9 +70,9 @@ Page({
       return
     }
 
-    if (name.length > 4) {
+    if (name.length > 3) {
       wx.showToast({
-        title: '班次名称最多支持4个字符',
+        title: '班次名称最多支持3个字符',
         icon: 'none',
         duration: 2000
       })

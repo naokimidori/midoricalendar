@@ -22,7 +22,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4rpx;
+  border-radius: 8rpx;
   font-size: 26rpx;
 }
 

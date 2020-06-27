@@ -86,6 +86,7 @@
 }
 
 .calendar .swiper-box {
+  margin-top: 15rpx;
   height: 800rpx;
 }
 
@@ -129,7 +130,7 @@
   align-items: center;
   height: 40rpx;
   margin-top: 4rpx;
-  font-size: 20rpx;
+  font-size: 22rpx;
   color: #fff;
   border: 1rpx solid #ccc;
   background-color: rgb(91, 181, 241);

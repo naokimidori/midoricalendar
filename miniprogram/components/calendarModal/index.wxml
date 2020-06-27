@@ -34,11 +34,9 @@
           </view>
         </view>
       </view>
-      <view class="cu-bar bg-white justify-end">
-        <view class="action">
-          <button class="cu-btn line-green text-green" catchtap="hideModal">取消</button>
-          <button class="cu-btn bg-green margin-left" catchtap="confirmModal">确定</button>
-        </view>
+      <view class="modal-btns">
+        <view class="item-btn" catchtap="hideModal">取消</view>
+        <view class="item-btn btn-confirm" catchtap="confirmModal">确认</view>
       </view>
     </block>
   </view>
