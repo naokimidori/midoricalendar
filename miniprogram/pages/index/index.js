@@ -44,6 +44,9 @@ const options = {
     const flag = isArrChanged(cacheSheetList, sheetList)
     if (flag) {
       this.init();
+      this.setData({
+        cacheSheetList: sheetList
+      })
     }
   },
   getLocation() {
@@ -430,10 +433,6 @@ const options = {
             year: year + ''
           })
         }
-        if (!this.store.data.hasAuthUserInfo) {
-          resolve(days)
-          return
-        }
         wx.cloud.callFunction({
           name: 'calendarSheet',
           data: {
@@ -441,6 +440,10 @@ const options = {
             month: `${year}${month}`,
           }
         }).then(res => {
+          if (!this.store.data.hasAuthUserInfo) {
+            resolve(days)
+            return
+          }
           const { sheetList = [] } = this.store.data
           const calendarSheets = res.result.data || []
           const list = calendarSheets.reduce((pre = [], cur) => {
@@ -470,15 +473,15 @@ const options = {
    * 获取所有的班次数据
    */
   getAllSheetSetting() {
-    if (!this.store.data.hasAuthUserInfo) {
-      return
-    }
     wx.cloud.callFunction({
       name: 'sheetSetList',
       data: {
         action: 'query'
       }
     }).then(res => {
+      if (!this.store.data.hasAuthUserInfo) {
+        return
+      }
       const { result = {} } = res || {}
       if (result && result.data) {
         this.setData({
