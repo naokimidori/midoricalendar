@@ -9,29 +9,37 @@
         <text class="cuIcon-close text-red"></text>
       </view>
     </view>
-    <view class="list-container" wx:if="{{sheetList.length>0}}">
-      <view class="list-title">
-        当前选择：{{curName}}
+    <view class="list-container" wx:if="{{sheetList.length == 0}}">
+      <view class="no-sheetList">
+        请先设置班次
+        <view class="text-go bg-green" catchtap="goSheetSetting">GO！</view>
       </view>
-      <view class="list-wrapper">
-        <view class="list-item item-empty" bindtap="clearSelct">空</view>
-        <view
-          class="list-item"
-          wx:for="{{sheetList}}"
-          wx:key="_id"
-          data-item="{{item}}"
-          bindtap="onSelectItem"
-          style="background: {{curSheetId === item._id ? item.color : '#c5c5c5'}}"
-        >
-          {{item.sheetName}}
+    </view>
+    <block wx:if="{{sheetList.length > 0}}">
+      <view class="list-container">
+        <view class="list-title">
+          当前选择：{{curName}}
+        </view>
+        <view class="list-wrapper">
+          <view class="list-item item-empty" bindtap="clearSelct">空</view>
+          <view
+            class="list-item"
+            wx:for="{{sheetList}}"
+            wx:key="_id"
+            data-item="{{item}}"
+            bindtap="onSelectItem"
+            style="background: {{curSheetId === item._id ? item.color : '#c5c5c5'}}"
+          >
+            {{item.sheetName}}
+          </view>
         </view>
       </view>
-    </view>
-    <view class="cu-bar bg-white justify-end">
-      <view class="action">
-        <button class="cu-btn line-green text-green" catchtap="hideModal">取消</button>
-        <button class="cu-btn bg-green margin-left" catchtap="confirmModal">确定</button>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button class="cu-btn line-green text-green" catchtap="hideModal">取消</button>
+          <button class="cu-btn bg-green margin-left" catchtap="confirmModal">确定</button>
+        </view>
       </view>
-    </view>
+    </block>
   </view>
 </view>

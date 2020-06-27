@@ -1,16 +1,20 @@
 import create from '../../utils/create';
 import store from '../../store/index';
+import { isArrChanged } from '../../utils/utils'
 
 const options = {
+  use: ['hasAuthUserInfo'],
   data: {
-    sheetList: []
+    sheetList: [],
   },
   onShow() {
-    this.getSheetSetList()
+    if (this.store.data.hasAuthUserInfo) {
+      this.getSheetSetList()
+    }
   },
   getSheetSetList() {
     wx.showLoading()
-    
+    const oldSheetList = this.store.data.sheetList
     wx.cloud.callFunction({
       name: 'sheetSetList',
       data: {
@@ -21,10 +25,14 @@ const options = {
 
       const { result = {} } = res || {}
       if (result && result.data) {
+        const newSheetList = result.data || []
         this.setData({
-          sheetList: result.data || []
+          sheetList: newSheetList
         })
-        this.store.data.sheetList = result.data || []
+        const flag = isArrChanged(oldSheetList, newSheetList)
+        if (flag) {
+          this.store.data.sheetList = result.data || []
+        }
       }
     }).catch(e => {
       console.error('querySheet', e)
@@ -46,7 +54,12 @@ const options = {
     wx.navigateTo({
       url: `/pages/sheet-setting/form/form?data=${JSON.stringify(item)}`,
     })
-  }
+  },
+  toLogin() {
+    wx.navigateTo({
+      url: '/pages/guide/guide'
+    });
+  },
 }
 
 create.Page(store, options);

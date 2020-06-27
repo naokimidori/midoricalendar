@@ -5,6 +5,22 @@
   padding: 20rpx 45rpx 0;
 }
 
+.calendar-modal .list-container .no-sheetList {
+  box-sizing: border-box;
+  height: 200rpx;
+  font-size: 32rpx;
+}
+
+.calendar-modal .list-container .no-sheetList .text-go {
+  width: 200rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30rpx auto 0;
+}
+
 .calendar-modal .list-title {
   text-align: left;
   padding-bottom: 20rpx;

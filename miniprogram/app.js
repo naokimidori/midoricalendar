@@ -13,7 +13,7 @@ App({
       })
     }
     this.getAuthInfo();
-    this.getOpenid();
+    // this.getOpenid();
   },
   getAuthInfo() {
     wx.getSetting({

@@ -1,13 +1,20 @@
 <view class="page-setting">
-  <view class="sheet-list-info">* 班次列表</view>
-  <view class="sheet-item" wx:for="{{sheetList}}" wx:key="_id" bindtap="handleEnter" data-item="{{item}}">
-    <view class="item-colorbox" style="background: {{item.color}}">{{item.sheetName}}</view>
-    <view class="item-time">
-      {{item.startTime ? item.startTime+' ~ '+ item.endTime : ''}}
-      <image class="item-arrow" src="../../images/arrow.png"></image>
+  <block wx:if="{{$.hasAuthUserInfo}}">
+    <view class="sheet-list-info">* 班次列表</view>
+    <view class="sheet-item" wx:for="{{sheetList}}" wx:key="_id" bindtap="handleEnter" data-item="{{item}}">
+      <view class="item-colorbox" style="background: {{item.color}}">{{item.sheetName}}</view>
+      <view class="item-time">
+        {{item.startTime ? item.startTime+' ~ '+ item.endTime : ''}}
+        <image class="item-arrow" src="../../images/arrow.png"></image>
+      </view>
     </view>
-  </view>
-  <view wx:if="{{sheetList.length < 21}}" class="add-new" bindtap="handleNewSheet">
-    新建班次
-  </view>
+    <view wx:if="{{sheetList.length < 21}}" class="add-new" bindtap="handleNewSheet">
+      新建班次
+    </view>
+  </block>
+  <block wx:else>
+    <view class="not-login bg-green" bindtap="toLogin">
+      立即登录
+    </view>
+  </block>
 </view> 

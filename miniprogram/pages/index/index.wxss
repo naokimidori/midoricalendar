@@ -20,9 +20,8 @@
 
 .calendar .calendar-header .header-day {
   padding: 0 30rpx;
-  font-family: DinCond;
-  font-weight: bold;
-  /* font-weight: 600; */
+  font-family: DinPro;
+  /* font-weight: bold; */
   font-size: 120rpx;
   line-height: 100rpx;
 }
@@ -31,6 +30,35 @@
   /* display: flex; */
   /* flex-direction: column; */
   /* justify-content: flex-start; */
+}
+
+.calendar .calendar-header .header-detail {
+  box-sizing: border-box;
+  flex: 1;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.calendar .calendar-header .header-detail .detail-name {
+  box-sizing: border-box;
+  padding-top: 10rpx;
+  min-width: 250rpx;
+  text-align: left;
+  font-size: 26rpx;
+}
+
+.calendar .calendar-header .header-detail .detail-name .name-text {
+  font-weight: bold;
+}
+
+.calendar .calendar-header .header-detail .detail-times {
+  box-sizing: border-box;
+  padding-top: 10rpx;
+  min-width: 250rpx;
+  text-align: left;
+  font-size: 26rpx;
 }
 
 .calendar .calendar-header .header-info .city {
@@ -63,7 +91,7 @@
 
 /* 星期 */
 .calendar .calendar-week {
-  padding: 20rpx 24rpx 0;
+  padding: 20rpx 24rpx;
   display: flex;
   /* justify-content: space-around; */
 }
@@ -116,26 +144,13 @@
   background-color:#faebd0;
 }
 
-
-.page-index .index-agenda {
-  margin: 50rpx auto 0;
-  width: 86%;
-  padding: 20rpx;
+.page-index .today-btn {
   background-color: #fff;
-  /* border: 1rpx solid #f2f2f2; */
-  box-shadow: 0rpx 0rpx 20rpx #ddd;
-  border-radius: 8rpx;
-  position: relative;
-  min-height: 260rpx;
-}
-
-.page-index .index-agenda .today {
-  background-color: #fff;
-  position: absolute;
+  position: fixed;
+  right: 10rpx;
+  top: 75%;
   width: 90rpx;
   height: 90rpx;
-  right: 60rpx;
-  top: -45rpx;
   box-shadow: 0rpx 0rpx 14rpx #ddd;
   border-radius: 50%;
   text-align: center;
@@ -143,8 +158,3 @@
   font-size: 34rpx;
   font-weight: bold;
 }
-
-.page-index .index-agenda .agenda-title {
-  font-family: PingFangSC-Regular, sans-serif;
-}
- 

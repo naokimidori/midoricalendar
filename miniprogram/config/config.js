@@ -1,7 +1,7 @@
 export default {
   miniApp: '小树日历',
   miniAppDesc: '一款可以让你提高生活效率的日历',
-  miniSlogan: '在最美的年龄为最纯真的梦做最大的努力',
+  miniSlogan: 'みどり　へ',
   version: '1.0.0',
   amapGeoUrl: 'https://restapi.amap.com/v3/geocode/regeo',
   amapKey: 'aadcb3316c0472d20f026b75e326c34a',

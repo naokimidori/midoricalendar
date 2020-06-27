@@ -70,6 +70,12 @@ create.Component({
         curName: '空',
         curItem: {},
       })
-    }
+    },
+    goSheetSetting() {
+      wx.navigateTo({
+        url: '/pages/sheet-setting/sheet-setting',
+      })
+      this.hideModal()
+    },
   }
 })

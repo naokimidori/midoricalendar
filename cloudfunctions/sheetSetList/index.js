@@ -28,10 +28,12 @@ exports.main = async (event, context) => {
 }
 
 async function addSheetSetList(event) {
+  const _D = new Date()
 
   return await db.collection('sheet_set_list').add({
     data: {
       ...event,
+      gmt: _D.getTime()
     }
   })
 }
@@ -44,11 +46,14 @@ async function querySheetSetList(event) {
     .where({
       'userInfo.openId': openId
     })
+    .orderBy('gmt', 'asc')
     .get()
 }
 
 async function updateSheetSet(event) {
   const { _id, sheetName, startTime, endTime, color, action } = event || {}
+  const _D = new Date()
+
   return await db.collection('sheet_set_list')
     .doc(_id)
     .update({
@@ -58,6 +63,7 @@ async function updateSheetSet(event) {
         endTime,
         color,
         action,
+        gmt: _D.getTime()
       }
     })
 }

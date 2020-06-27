@@ -1,6 +1,7 @@
 import create from '../../utils/create';
 import store from '../../store/index';
 import config from '../../config/config';
+import { isArrChanged } from '../../utils/utils'
 
 const options = {
   use: [
@@ -29,11 +30,21 @@ const options = {
     clickedDay: '',
     clickedMonth: '',
     clickedDayItem: {},
+    cacheSheetList: [],
+    curDayInfos: {},
   },
   onLoad() {
     this.getLocation();
     this.getAllSheetSetting();
     this.init();
+  },
+  onShow() {
+    const { cacheSheetList } = this.data
+    const { sheetList } = this.store.data
+    const flag = isArrChanged(cacheSheetList, sheetList)
+    if (flag) {
+      this.init();
+    }
   },
   getLocation() {
     let _this = this;
@@ -147,14 +158,11 @@ const options = {
       year = date.getFullYear(),
       day = this.formatDay(date.getDate()),
       today = `${year}${month}${day}`
-    wx.showLoading(' ')
-    let calendar = await this.generateThreeMonths(year, month)
-    wx.hideLoading()
+
     this.setData({
       currentMonth: month,
       currentYear: year,
       currentDay: day,
-      calendar,
       month,
       year,
       day,
@@ -162,6 +170,17 @@ const options = {
       beSelectDate: today,
       date: `${year}/${month}`
     })
+
+    wx.showLoading(' ')
+    let calendar = await this.generateThreeMonths(year, month)
+    const curMonthDays = calendar.second || []
+    const curDayInfos = curMonthDays.find(x => x.dateId === today)
+    wx.hideLoading()
+    this.setData({
+      calendar,
+      curDayInfos: curDayInfos || {}
+    })
+
   },
   /**
    * 
@@ -411,6 +430,10 @@ const options = {
             year: year + ''
           })
         }
+        if (!this.store.data.hasAuthUserInfo) {
+          resolve(days)
+          return
+        }
         wx.cloud.callFunction({
           name: 'calendarSheet',
           data: {
@@ -447,6 +470,9 @@ const options = {
    * 获取所有的班次数据
    */
   getAllSheetSetting() {
+    if (!this.store.data.hasAuthUserInfo) {
+      return
+    }
     wx.cloud.callFunction({
       name: 'sheetSetList',
       data: {
@@ -455,6 +481,10 @@ const options = {
     }).then(res => {
       const { result = {} } = res || {}
       if (result && result.data) {
+        this.setData({
+          cacheSheetList: result.data || []
+        })
+
         this.store.data.sheetList = result.data || []
       }
     }).catch(e => {
