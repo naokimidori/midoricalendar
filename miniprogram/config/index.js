@@ -7,4 +7,4 @@ export const ENV_ID = {
   [PROD]: 'calendar-prod-w7kpb',
 };
 
-export const ENV = ENV_ID[DEV]; // TODO: 功能上线前改为PROD
+export const ENV = ENV_ID[PROD]; // TODO: 功能上线前改为PROD
