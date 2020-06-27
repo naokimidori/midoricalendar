@@ -57,7 +57,7 @@
 }
 
 .calendar-modal .modal-btns {
-  border-top: 1rpx solid #ccc;
+  border-top: 2rpx solid #ccc;
   display: flex;
 }
 
@@ -73,5 +73,5 @@
 
 .calendar-modal .modal-btns  .btn-confirm {
   color: #39b54a;
-  border-left: 1rpx solid #ccc;
+  border-left: 2rpx solid #ccc;
 }
