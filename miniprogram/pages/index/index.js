@@ -191,63 +191,67 @@ const options = {
    * @param {any} e 
    */
   async swiperChange(e) {
-    const lastIndex = this.data.swiperIndex,
-      currentIndex = e.detail.current
-    let flag = false,
-      {
+    const { source } = e.detail
+    if (source === 'touch') {
+      const lastIndex = this.data.swiperIndex,
+        currentIndex = e.detail.current
+      let flag = false,
+        {
+          year,
+          month,
+          day,
+          today,
+          date,
+          calendar,
+          swiperMap,
+          currentMonth,
+          currentDay,
+          currentYear,
+        } = this.data,
+        change = swiperMap[(lastIndex + 2) % 4],
+        time = this.countMonth(year, month),
+        key = 'lastMonth'
+
+      if (lastIndex > currentIndex) {
+        lastIndex === 3 && currentIndex === 0 ?
+          flag = true :
+          null
+      } else {
+        lastIndex === 0 && currentIndex === 3 ?
+          null :
+          flag = true
+      }
+      if (flag) {
+        key = 'nextMonth'
+      }
+
+      year = time[key].year
+      month = time[key].month
+      date = `${year}/${month}`
+      day = ''
+      if (today.indexOf(date) !== -1) {
+        day = today.slice(-2)
+      }
+
+      if(parseInt(month) === parseInt(currentMonth) && parseInt(year) === parseInt(currentYear)) {
+        day = currentDay;
+      }
+
+      time = this.countMonth(year, month)
+      calendar[change] = null
+      calendar[change] = await this.generateAllDays(time[key].year, time[key].month)
+
+      this.setData({
+        swiperIndex: currentIndex,
+        //文档上不推荐这么做，但是滑动并不会改变current的值，所以随之而来的计算会出错
         year,
         month,
-        day,
-        today,
         date,
-        calendar,
-        swiperMap,
-        currentMonth,
-        currentDay,
-        currentYear,
-      } = this.data,
-      change = swiperMap[(lastIndex + 2) % 4],
-      time = this.countMonth(year, month),
-      key = 'lastMonth'
-
-    if (lastIndex > currentIndex) {
-      lastIndex === 3 && currentIndex === 0 ?
-        flag = true :
-        null
-    } else {
-      lastIndex === 0 && currentIndex === 3 ?
-        null :
-        flag = true
-    }
-    if (flag) {
-      key = 'nextMonth'
+        day,
+        calendar
+      })
     }
 
-    year = time[key].year
-    month = time[key].month
-    date = `${year}/${month}`
-    day = ''
-    if (today.indexOf(date) !== -1) {
-      day = today.slice(-2)
-    }
-
-    if(parseInt(month) === parseInt(currentMonth) && parseInt(year) === parseInt(currentYear)) {
-      day = currentDay;
-    }
-
-    time = this.countMonth(year, month)
-    calendar[change] = null
-    calendar[change] = await this.generateAllDays(time[key].year, time[key].month)
-
-    this.setData({
-      swiperIndex: currentIndex,
-      //文档上不推荐这么做，但是滑动并不会改变current的值，所以随之而来的计算会出错
-      year,
-      month,
-      date,
-      day,
-      calendar
-    })
   },
   /**
    * 回到当前月
