@@ -51,6 +51,7 @@
 
 .calendar .calendar-header .header-detail .detail-name .name-text {
   font-weight: bold;
+  font-size: 28rpx;
 }
 
 .calendar .calendar-header .header-detail .detail-times {

@@ -13,7 +13,7 @@
 			<view class="header-detail">
 				<block wx:if="{{curDayInfos.sheetName}}">
 					<view class="detail-name">
-						今日排班：<text class="name-text" style="color:{{curDayInfos.color}}">{{curDayInfos.sheetName}}</text>
+						今日事项：<text class="name-text" style="color:{{curDayInfos.color}}">{{curDayInfos.sheetName}}</text>
 					</view>
 					<view class="detail-times" wx:if="{{curDayInfos.startTime && curDayInfos.endTime}}">
 						{{curDayInfos.startTime}} ~ {{curDayInfos.endTime}}

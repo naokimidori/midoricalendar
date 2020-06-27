@@ -2,6 +2,10 @@
   padding-top: 20rpx;
 }
 
+.page-setting .setting-wrapper {
+  padding-bottom: 140rpx;
+}
+
 .page-setting .sheet-list-info {
   padding: 0 0 20rpx 20rpx;
 }

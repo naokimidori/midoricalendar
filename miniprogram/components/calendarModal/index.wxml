@@ -11,7 +11,7 @@
     </view>
     <view class="list-container" wx:if="{{sheetList.length == 0}}">
       <view class="no-sheetList">
-        请先设置班次
+        请先设置事项
         <view class="text-go bg-green" catchtap="goSheetSetting">GO！</view>
       </view>
     </view>

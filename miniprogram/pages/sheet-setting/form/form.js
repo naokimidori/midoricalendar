@@ -63,7 +63,7 @@ Page({
 
     if (!name) {
       wx.showToast({
-        title: '请输入班次名称',
+        title: '请输入事项名称',
         icon: 'none',
         duration: 2000
       })
@@ -72,7 +72,7 @@ Page({
 
     if (name.length > 3) {
       wx.showToast({
-        title: '班次名称最多支持3个字符',
+        title: '事项名称最多支持3个字符',
         icon: 'none',
         duration: 2000
       })

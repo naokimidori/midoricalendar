@@ -474,7 +474,7 @@ const options = {
   },
 
   /**
-   * 获取所有的班次数据
+   * 获取所有的事项设置数据
    */
   getAllSheetSetting() {
     wx.cloud.callFunction({

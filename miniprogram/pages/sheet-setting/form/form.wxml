@@ -1,13 +1,13 @@
 <view class="page-sheet-form">
-  <view class="action-title">班次名称</view>
+  <view class="action-title">事项名称</view>
   <input
     class="name-input"
-    placeholder="请填写班次名称"
+    placeholder="请填写事项名称"
     bindinput="onNameInput"
     value="{{name}}"
   ></input>
 
-  <view class="action-title">班次时段</view>
+  <view class="action-title">事项时段</view>
   <view class="time-wrapper">
     <picker
       class="time-item time-start"

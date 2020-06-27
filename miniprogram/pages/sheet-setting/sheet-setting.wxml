@@ -1,6 +1,6 @@
 <view class="page-setting">
-  <block wx:if="{{$.hasAuthUserInfo}}">
-    <view class="sheet-list-info">* 班次列表</view>
+  <view wx:if="{{$.hasAuthUserInfo}}" class="setting-wrapper">
+    <view class="sheet-list-info">* 事项列表</view>
     <view class="sheet-item" wx:for="{{sheetList}}" wx:key="_id" bindtap="handleEnter" data-item="{{item}}">
       <view class="item-colorbox" style="background: {{item.color}}">{{item.sheetName}}</view>
       <view class="item-time">
@@ -9,9 +9,9 @@
       </view>
     </view>
     <view wx:if="{{sheetList.length < 21}}" class="add-new" bindtap="handleNewSheet">
-      新建班次
+      新建事项
     </view>
-  </block>
+  </view>
   <block wx:else>
     <view class="not-login bg-green" bindtap="toLogin">
       立即登录

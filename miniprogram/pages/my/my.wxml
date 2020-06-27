@@ -18,7 +18,7 @@
   <!-- 菜单列表 -->
   <view class="menu-item item-incise" bindtap="handleSetting">
     <image class="menu-item-pic" src="../../images/setting.png"></image>
-    <view class="menu-item-title">班表设置</view>
+    <view class="menu-item-title">事项设置</view>
     <image class="menu-item-arrow" src="../../images/arrow.png"></image>
   </view>
 
