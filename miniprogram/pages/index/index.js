@@ -109,6 +109,24 @@ const options = {
       })
     } else if (clickedDay && type === 'OFF') {
       console.log('type === OFF')
+      wx.cloud.callFunction({
+        name: 'calendarSheet',
+        data: {
+          action: 'delete',
+          detail: {
+            date: clickedDay,
+          }
+        }
+      }).then(async(res) => {
+        wx.showLoading(' ')
+        let calendar = await this.generateThreeMonths(year, _month)
+        this.setData({
+          calendar,
+        })
+        wx.hideLoading()
+        this.resetData()
+      })
+    } else {
       this.resetData()
     }
   },

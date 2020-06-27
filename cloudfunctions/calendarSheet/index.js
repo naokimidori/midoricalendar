@@ -10,14 +10,14 @@ exports.main = async (event, context) => {
 
   switch (event.action) {
     case 'addOrUpdate': {
-      return addCalendarSheet(event)
+      return addOrUpdateCalendarSheet(event)
     }
     case 'query': {
       return queryCalendarSheet(event)
     }
-    // case 'delete': {
-    //   return deleteSheetSet(event)
-    // }
+    case 'delete': {
+      return deleteCalendarSheet(event)
+    }
     default: {
       return
     }
@@ -49,38 +49,39 @@ async function addOrUpdateCalendarSheet(event) {
     }).get()
 
   if (result.data.length === 0) {
-    console.log('新增=>',detail)
-    addCalendarSheet(event)
+    return await db.collection('calendar_sheet')
+      .add({
+        data: {
+          ...detail,
+          userInfo: {
+            appId: wxContext.APPID,
+            openId: wxContext.OPENID
+          }
+        }
+      })
   } else if (result.data.length > 0) {
-    // updateCalendarSheet(event)
-    console.log('更新=>',detail)
+    return await db.collection('calendar_sheet')
+      .where({
+        'userInfo.openId': openId,
+        'date': detail.date
+      })
+      .update({
+        data: {
+          sheetId: detail.sheetId || ''
+        }
+      })
   }
 }
 
-async function addCalendarSheet(event) {
+async function deleteCalendarSheet(event) {
   const wxContext = cloud.getWXContext()
+  const openId = wxContext.OPENID
   const { detail } = event || {}
 
-  const res =  await db.collection('calendar_sheet')
-    .add({
-      data: {
-        ...detail,
-        userInfo: {
-          appId: wxContext.APPID,
-          openId: wxContext.OPENID
-        }
-      }
+  return await db.collection('calendar_sheet')
+    .where({
+      'userInfo.openId': openId,
+      'date': detail.date
     })
-
-  return res
+    .remove()
 }
-
-// async function updateCalendarSheet(event) {
-//   const wxContext = cloud.getWXContext()
-//   const openId = wxContext.OPENID
-
-//   const { detail } = event || {}
-
-//   return await db.collection('calendar_sheet')
-//     .
-// }
