@@ -56,8 +56,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/sheet-setting/sheet-setting",
-					"pathName": "pages/sheet-setting/sheet-setting",
+					"name": "pages/sheet-setting/form/form",
+					"pathName": "pages/sheet-setting/form/form",
 					"query": "",
 					"scene": null
 				}
