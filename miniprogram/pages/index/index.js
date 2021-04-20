@@ -41,13 +41,11 @@ const options = {
   onShow() {
     const { cacheSheetList } = this.data
     const { sheetList } = this.store.data
-    const flag = isArrChanged(cacheSheetList, sheetList)
-    if (flag) {
-      this.init();
-      this.setData({
-        cacheSheetList: sheetList
-      })
-    }
+    // const flag = isArrChanged(cacheSheetList, sheetList)
+    this.init();
+    this.setData({
+      cacheSheetList: sheetList
+    })
   },
   getLocation() {
     let _this = this;
