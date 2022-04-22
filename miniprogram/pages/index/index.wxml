@@ -1,4 +1,5 @@
-<view class="page-index" style="background-color: {{$.mainBgColor}}">
+<view  class="page-index" style="background-color: {{$.mainBgColor}}">
+    <view class='page-title'>小树日历</view>
 	<!-- 日历 -->
 	<view class="calendar">
 		<!-- 顶部及切换 -->
@@ -145,4 +146,11 @@
 	modalData="{{clickedDayItem}}"
 	bind:cancelEvent="handleCloseModal"
 	bind:confirmEvent="handleConfirmModal"
+  bind:addNoteEvent="handleAddNote"
+/>
+
+<noteModal
+  showModal="{{showNoteModal}}"
+  bind:cancelEvent="handleCloseNoteModal"
+	bind:confirmEvent="handleConfirmNoteModal"
 />

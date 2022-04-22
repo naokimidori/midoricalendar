@@ -1,7 +1,8 @@
 {
-  "backgroundColor": "#93c7b1",
   "backgroundTextStyle": "dark",
+  "navigationStyle": "custom",
   "usingComponents": {
-    "calendarModal": "../../components/calendarModal/index"
+    "calendarModal": "../../components/calendarModal/index",
+    "noteModal": "../../components/noteModal/index"
   }
 }

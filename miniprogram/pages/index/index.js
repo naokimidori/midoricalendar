@@ -32,6 +32,7 @@ const options = {
     clickedDayItem: {},
     cacheSheetList: [],
     curDayInfos: {},
+    showNoteModal: true,
   },
   onLoad() {
     this.getLocation();
@@ -141,6 +142,21 @@ const options = {
     } else {
       this.resetData()
     }
+  },
+  handleAddNote() {
+  	this.setData({
+      showModal: false,
+      showNoteModal: true,
+  	});
+  },
+  handleCloseNoteModal() {
+    this.setData({
+      showNoteModal: false,
+    });
+  },
+  handleConfirmNoteModal(e) {
+    const { value = '' } = e.detail || {};
+    console.log(value)
   },
   resetData() {
     this.setData({

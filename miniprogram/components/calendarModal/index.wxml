@@ -1,7 +1,7 @@
 <view class="calendar-modal cu-modal {{showModal ? 'show' : ''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
-      <view class="content">
+      <view class="content text-bold">
         {{modalData.dateLong || ''}}
         <text wx:if="{{modalData.week}}">周{{modalData.week}}</text>
       </view>
@@ -18,6 +18,7 @@
     <block wx:if="{{sheetList.length > 0}}">
       <view class="list-container">
         <view class="list-title">
+          <text class="cuIcon-title text-blue"></text>
           当前选择：{{curName}}
         </view>
         <view class="list-wrapper">
@@ -33,11 +34,21 @@
             {{item.sheetName}}
           </view>
         </view>
+        <view class="note-wrapper">
+            <button class="cu-btn block bg-blue margin-tb-sm lg" catchtap="handleAddNote">
+                <text class="cuIcon-edit margin-right-sm"></text>
+                添加备忘录
+            </button>
+        </view>
       </view>
       <view class="modal-btns">
         <view class="item-btn" catchtap="hideModal">取消</view>
         <view class="item-btn btn-confirm" catchtap="confirmModal">确认</view>
       </view>
     </block>
+    <!-- <view class="cu-bar bg-white justify-end">
+        <view class="cu-btn line-green text-green radius" catchtap="hideModal">取消</view>
+        <view class="cu-btn bg-green margin-left margin-right radius" catchtap="confirmModal">确定</view>
+    </view> -->
   </view>
 </view>

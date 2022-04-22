@@ -48,6 +48,9 @@ create.Component({
       }
       this.triggerEvent("confirmEvent", setData)
     },
+    handleAddNote() {
+        this.triggerEvent("addNoteEvent")
+    },
     onSelectItem(e) {
       const { item } = e.currentTarget.dataset
       const { _id, sheetName, startTime, endTime } = item || {}

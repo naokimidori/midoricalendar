@@ -23,7 +23,8 @@
 
 .calendar-modal .list-title {
   text-align: left;
-  padding-bottom: 20rpx;
+  padding-bottom: 30rpx;
+  font-size: 34rpx;
 }
 
 .calendar-modal .list-wrapper {
@@ -75,4 +76,14 @@
 .calendar-modal .modal-btns  .btn-confirm {
   color: #39b54a;
   border-left: 2rpx solid #ccc;
+}
+
+.note-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 0 30rpx;
+}
+
+.note-wrapper .note-btn {
+    
 }
