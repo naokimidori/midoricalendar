@@ -1,5 +1,5 @@
 <view class="calendar-modal cu-modal {{showModal ? 'show' : ''}}">
-  <view class="cu-dialog">
+  <view wx:if="{{!showNoteArea}}" class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
       <view class="content text-bold">
         {{modalData.dateLong || ''}}
@@ -23,22 +23,15 @@
         </view>
         <view class="list-wrapper">
           <view class="list-item item-empty" bindtap="clearSelct">空</view>
-          <view
-            class="list-item"
-            wx:for="{{sheetList}}"
-            wx:key="_id"
-            data-item="{{item}}"
-            bindtap="onSelectItem"
-            style="background: {{curSheetId === item._id ? item.color : '#c5c5c5'}}"
-          >
+          <view class="list-item" wx:for="{{sheetList}}" wx:key="_id" data-item="{{item}}" bindtap="onSelectItem" style="background: {{curSheetId === item._id ? item.color : '#c5c5c5'}}">
             {{item.sheetName}}
           </view>
         </view>
         <view class="note-wrapper">
-            <button class="cu-btn block bg-blue margin-tb-sm lg" catchtap="handleAddNote">
-                <text class="cuIcon-edit margin-right-sm"></text>
-                添加备忘录
-            </button>
+          <button class="cu-btn block bg-blue margin-tb-sm lg" catchtap="handleAddNote">
+            <text class="cuIcon-edit margin-right-sm"></text>
+            {{curNote ? '修改': '添加'}}备忘录
+          </button>
         </view>
       </view>
       <view class="modal-btns">
@@ -46,9 +39,28 @@
         <view class="item-btn btn-confirm" catchtap="confirmModal">确认</view>
       </view>
     </block>
-    <!-- <view class="cu-bar bg-white justify-end">
-        <view class="cu-btn line-green text-green radius" catchtap="hideModal">取消</view>
-        <view class="cu-btn bg-green margin-left margin-right radius" catchtap="confirmModal">确定</view>
-    </view> -->
+  </view>
+  <view wx:else class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content text-bold solid-bottom">
+        填写备忘录
+      </view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="solid-bottom">
+      <view class="cu-form-group text-left">
+        <textarea
+          maxlength="-1"
+          bindinput="textareaAInput"
+          placeholder="请输入"
+          value="{{curNote}}"
+        ></textarea>
+      </view>
+    </view>
+    <view class="cu-bar bg-white justify-center">
+      <view class="cu-btn bg-blue margin-left margin-right radius" catchtap="onComplete">完 成</view>
+    </view>
   </view>
 </view>

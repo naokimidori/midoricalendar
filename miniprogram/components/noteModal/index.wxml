@@ -8,16 +8,12 @@
     </view>
     <view class="solid-bottom">
       <view class="cu-form-group text-left">
-        <textarea
-          maxlength="-1"
-          bindinput="textareaAInput"
-          placeholder="请输入"
-        ></textarea>
+        <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请输入"></textarea>
       </view>
     </view>
     <view class="modal-btns">
-        <view class="item-btn" catchtap="hideModal">取消</view>
-        <view class="item-btn btn-confirm" catchtap="confirmModal">确认</view>
-      </view>
+      <view class="item-btn" catchtap="hideModal">取消</view>
+      <view class="item-btn btn-confirm" catchtap="confirmModal">确认</view>
+    </view>
   </view>
 </view>

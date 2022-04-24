@@ -2,7 +2,6 @@
   "backgroundTextStyle": "dark",
   "navigationStyle": "custom",
   "usingComponents": {
-    "calendarModal": "../../components/calendarModal/index",
-    "noteModal": "../../components/noteModal/index"
+    "calendarModal": "../../components/calendarModal/index"
   }
 }

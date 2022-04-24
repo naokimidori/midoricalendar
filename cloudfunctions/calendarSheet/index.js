@@ -69,7 +69,8 @@ async function addOrUpdateCalendarSheet(event) {
       })
       .update({
         data: {
-          sheetId: detail.sheetId || ''
+          sheetId: detail.sheetId || '',
+          note: detail.note || '',
         }
       })
   }

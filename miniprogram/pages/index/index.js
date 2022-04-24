@@ -32,7 +32,6 @@ const options = {
     clickedDayItem: {},
     cacheSheetList: [],
     curDayInfos: {},
-    showNoteModal: true,
   },
   onLoad() {
     this.getLocation();
@@ -98,9 +97,12 @@ const options = {
     const { setting } = e.detail || {}
     const { clickedDay, clickedMonth, clickedDayItem } = this.data
     const { year, _month, sheetId } = clickedDayItem || {}
-    const { type, sheetId: newSheetId } = setting || {}
+    const { type, sheetId: newSheetId, note } = setting || {}
 
-    if (clickedDay && newSheetId && newSheetId !== sheetId) {
+    console.log('setting', setting);
+
+    // if (clickedDay && newSheetId && newSheetId !== sheetId) {
+    if (clickedDay && type === 'ON') {
       wx.cloud.callFunction({
         name: 'calendarSheet',
         data: {
@@ -109,6 +111,7 @@ const options = {
             date: clickedDay,
             month: clickedMonth,
             sheetId: newSheetId,
+            note: note,
           }
         }
       }).then(async(res) => {
@@ -143,21 +146,56 @@ const options = {
       this.resetData()
     }
   },
-  handleAddNote() {
-  	this.setData({
-      showModal: false,
-      showNoteModal: true,
-  	});
-  },
-  handleCloseNoteModal() {
-    this.setData({
-      showNoteModal: false,
-    });
-  },
-  handleConfirmNoteModal(e) {
-    const { value = '' } = e.detail || {};
-    console.log(value)
-  },
+  // handleAddNote() {
+  // 	this.setData({
+  //     showModal: false,
+  //     showNoteModal: true,
+  // 	});
+  // },
+  // handleCloseNoteModal() {
+  //   this.setData({
+  //     showNoteModal: false,
+  //   });
+  // },
+  // handleConfirmNoteModal(e) {
+  //   const { value = '' } = e.detail || {};
+
+  //   const { clickedDay, clickedMonth, clickedDayItem } = this.data
+  //   const { year, _month, sheetId } = clickedDayItem || {}
+  //   console.log('clickedDayItem', clickedDayItem)
+  //   wx.cloud.callFunction({
+  //       name: 'calendarSheet',
+  //       data: {
+  //         action: 'addOrUpdate',
+  //         detail: {
+  //           date: clickedDay,
+  //           month: clickedMonth,
+  //           note: value,
+  //         }
+  //       }
+  //     }).then(async(res) => {
+  //       wx.showLoading(' ')
+  //       let calendar = await this.generateThreeMonths(year, _month)
+  //       this.setData({
+  //         calendar,
+  //         clickedDayItem: {
+  //             ...clickedDayItem,
+  //             note: value,
+  //         }
+  //       })
+  //       wx.hideLoading()
+  //       // this.resetData()
+  //       this.setData({
+  //         showNoteModal: false,
+  //         showModal: true,
+  //       });
+  //     }).catch((e) => {
+  //       wx.showToast({
+  //         title: '网络开小差了',
+  //       })
+  //       this.resetData();
+  //     })
+  // },
   resetData() {
     this.setData({
       showModal: false,

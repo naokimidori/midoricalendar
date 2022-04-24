@@ -11,11 +11,14 @@ create.Component({
       type: Object,
       value: {},
       observer: function(newVal) {
-        const { sheetId = '', sheetName = ''} = newVal || {}
-        if (sheetId) {
+        // console.log('newVal', newVal);
+        const { sheetId = '', sheetName = '', note = '' } = newVal || {}
+        if (sheetId || note) {
           this.setData({
             curName: sheetName,
-            curSheetId: sheetId
+            curSheetId: sheetId,
+            curNote: note,
+            type: 'ON',
           })
         } else {
           this.setData({
@@ -23,6 +26,7 @@ create.Component({
             curSheetId: '',
             type: 'OFF',
             curItem: {},
+            curNote: '',
           })
         }
       }
@@ -33,23 +37,37 @@ create.Component({
     curSheetId: '',
     curName: '空',
     curItem: {},
+    showNoteArea: false,
+    curNote: '',
   },
   methods: {
     hideModal() {
       this.triggerEvent("cancelEvent")
     },
     confirmModal() {
-      const { type, curSheetId } = this.data
+      const { type, curSheetId, curNote } = this.data
       let setData = {
         setting: {
           sheetId: curSheetId,
           type,
+          note: curNote,
         }
       }
       this.triggerEvent("confirmEvent", setData)
     },
     handleAddNote() {
-        this.triggerEvent("addNoteEvent")
+      this.setData({
+        showNoteArea: true,
+      });
+    },
+    onComplete() {
+      this.setData({
+        showNoteArea: false,
+      });
+    },
+    textareaAInput(e) {
+      const { value = '' } = e.detail || {};
+      this.setData({  curNote: value });
     },
     onSelectItem(e) {
       const { item } = e.currentTarget.dataset

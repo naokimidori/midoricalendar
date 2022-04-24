@@ -148,9 +148,10 @@
 	bind:confirmEvent="handleConfirmModal"
   bind:addNoteEvent="handleAddNote"
 />
-
+<!-- 
 <noteModal
   showModal="{{showNoteModal}}"
   bind:cancelEvent="handleCloseNoteModal"
 	bind:confirmEvent="handleConfirmNoteModal"
 />
+-->
