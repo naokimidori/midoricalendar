@@ -45,7 +45,11 @@ create.Component({
       this.triggerEvent("cancelEvent")
     },
     confirmModal() {
-      const { type, curSheetId, curNote } = this.data
+      const { curSheetId, curNote } = this.data;
+      let { type } = this.data;
+      if (curNote) {
+        type = 'ON'
+      }
       let setData = {
         setting: {
           sheetId: curSheetId,
