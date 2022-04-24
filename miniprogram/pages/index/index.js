@@ -117,9 +117,19 @@ const options = {
       }).then(async(res) => {
         wx.showLoading(' ')
         let calendar = await this.generateThreeMonths(year, _month)
-        this.setData({
+        let props = {
           calendar,
-        })
+        }
+        // console.log('_month_month', _month, this.data.currentMonth);
+        if (_month === this.data.currentMonth) {
+          console.log('_month_month2', calendar);
+          // const curMonthDays = calendar.second || []
+          const curMonthDays = [...calendar.first, ...calendar.second, ...calendar.third, ...calendar.fourth]
+          const curDayInfos = curMonthDays.find(x => x.dateId === this.data.today)
+          props.curDayInfos = curDayInfos || {};
+        }
+
+        this.setData({ ...props })
         wx.hideLoading()
         this.resetData()
       })
@@ -136,9 +146,17 @@ const options = {
       }).then(async(res) => {
         wx.showLoading(' ')
         let calendar = await this.generateThreeMonths(year, _month)
-        this.setData({
+        let props = {
           calendar,
-        })
+        }
+        if (_month === this.data.currentMonth) {
+          // const curMonthDays = calendar.second || []
+          const curMonthDays = [...calendar.first, ...calendar.second, ...calendar.third, ...calendar.fourth]
+          const curDayInfos = curMonthDays.find(x => x.dateId === this.data.today)
+          props.curDayInfos = curDayInfos || {};
+        }
+
+        this.setData({ ...props })
         wx.hideLoading()
         this.resetData()
       })
@@ -228,7 +246,8 @@ const options = {
 
     wx.showLoading(' ')
     let calendar = await this.generateThreeMonths(year, month)
-    const curMonthDays = calendar.second || []
+    // const curMonthDays = calendar.second || []
+    const curMonthDays = [...calendar.first, ...calendar.second, ...calendar.third, ...calendar.fourth]
     const curDayInfos = curMonthDays.find(x => x.dateId === today)
     wx.hideLoading()
     this.setData({
@@ -347,8 +366,11 @@ const options = {
     if(parseInt(month) === parseInt(currentMonth) && parseInt(year) === parseInt(currentYear)) {
       day = currentDay;
     }
+    // const curMonthDays = calendar.second || []
+    // const curDayInfos = curMonthDays.find(x => x.dateId === this.data.today)
     this.setData({
       calendar,
+      // curDayInfos,
       day,
       date,
       month,

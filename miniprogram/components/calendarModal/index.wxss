@@ -74,7 +74,7 @@
 }
 
 .calendar-modal .modal-btns  .btn-confirm {
-  color: #39b54a;
+  /* color: #39b54a; */
   border-left: 2rpx solid #ccc;
 }
 

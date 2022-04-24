@@ -28,7 +28,7 @@
           </view>
         </view>
         <view class="note-wrapper">
-          <button class="cu-btn block bg-blue margin-tb-sm lg" catchtap="handleAddNote">
+          <button class="cu-btn block bg-green margin-tb-sm lg" catchtap="handleAddNote">
             <text class="cuIcon-edit margin-right-sm"></text>
             {{curNote ? '修改': '添加'}}备忘录
           </button>
@@ -36,7 +36,7 @@
       </view>
       <view class="modal-btns">
         <view class="item-btn" catchtap="hideModal">取消</view>
-        <view class="item-btn btn-confirm" catchtap="confirmModal">确认</view>
+        <view class="item-btn btn-confirm text-green" catchtap="confirmModal">确认</view>
       </view>
     </block>
   </view>
@@ -45,14 +45,14 @@
       <view class="content text-bold solid-bottom">
         填写备忘录
       </view>
-      <view class="action" bindtap="hideModal">
+      <!-- <view class="action" bindtap="hideModal">
         <text class="cuIcon-close text-red"></text>
-      </view>
+      </view> -->
     </view>
     <view class="solid-bottom">
       <view class="cu-form-group text-left">
         <textarea
-          maxlength="-1"
+          fixed="{{true}}"
           bindinput="textareaAInput"
           placeholder="请输入"
           value="{{curNote}}"
@@ -60,7 +60,7 @@
       </view>
     </view>
     <view class="cu-bar bg-white justify-center">
-      <view class="cu-btn bg-blue margin-left margin-right radius" catchtap="onComplete">完 成</view>
+      <view class="cu-btn bg-green margin-left margin-right radius" catchtap="onComplete">完 成</view>
     </view>
   </view>
 </view>
