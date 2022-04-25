@@ -48,7 +48,7 @@
   transform: translateX(-50%);
   height: 140rpx;
   width: 100%;
-  background-color: #93C7B1;
+  background-color: #6739b6;
   display: flex;
   justify-content: center;
   align-items: center;

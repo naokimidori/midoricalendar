@@ -12,13 +12,13 @@
     <view class="list-container" wx:if="{{sheetList.length == 0}}">
       <view class="no-sheetList">
         请先设置事项
-        <view class="text-go bg-green" catchtap="goSheetSetting">GO！</view>
+        <view class="text-go bg-purple" catchtap="goSheetSetting">GO！</view>
       </view>
     </view>
     <block wx:if="{{sheetList.length > 0}}">
       <view class="list-container">
         <view class="list-title">
-          <text class="cuIcon-title text-blue"></text>
+          <text class="cuIcon-title text-purple"></text>
           当前选择：{{curName}}
         </view>
         <view class="list-wrapper">
@@ -28,7 +28,7 @@
           </view>
         </view>
         <view class="note-wrapper">
-          <button class="cu-btn block bg-green margin-tb-sm lg" catchtap="handleAddNote">
+          <button class="cu-btn block bg-purple margin-tb-sm lg" catchtap="handleAddNote">
             <text class="cuIcon-edit margin-right-sm"></text>
             {{curNote ? '修改': '添加'}}备忘录
           </button>
@@ -36,7 +36,7 @@
       </view>
       <view class="modal-btns">
         <view class="item-btn" catchtap="hideModal">取消</view>
-        <view class="item-btn btn-confirm text-green" catchtap="confirmModal">确认</view>
+        <view class="item-btn btn-confirm text-purple" catchtap="confirmModal">确认</view>
       </view>
     </block>
   </view>
@@ -60,7 +60,7 @@
       </view>
     </view>
     <view class="cu-bar bg-white justify-center">
-      <view class="cu-btn bg-green margin-left margin-right radius" catchtap="onComplete">完 成</view>
+      <view class="cu-btn bg-purple margin-left margin-right radius" catchtap="onComplete">完 成</view>
     </view>
   </view>
 </view>

@@ -98,7 +98,7 @@
   </view>
   <view class="note-wrapper radius shadow-warp" wx:if="{{curDayInfos.note}}">
     <view class="title">
-      <text class='cuIcon-titles text-cyan '></text>
+      <text class='cuIcon-titles text-purple '></text>
       今日备忘录
     </view>
     <view class="content">
