@@ -21,12 +21,12 @@ const options = {
     });
   },
 
-  showZScode: async function () {
-    wx.previewImage({
-      urls: [config.tipQrCode],
-      current: config.tipQrCode,
-    });
-  },
+//   showZScode: async function () {
+//     wx.previewImage({
+//       urls: [config.tipQrCode],
+//       current: config.tipQrCode,
+//     });
+//   },
 
   goToAbout() {
     wx.navigateTo({
