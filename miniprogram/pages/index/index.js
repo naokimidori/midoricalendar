@@ -518,10 +518,10 @@ const options = {
             month: `${year}${month}`,
           }
         }).then(res => {
-          if (!this.store.data.hasAuthUserInfo) {
-            resolve(days)
-            return
-          }
+        //   if (!this.store.data.hasAuthUserInfo) {
+        //     resolve(days)
+        //     return
+        //   }
           const { sheetList = [] } = this.store.data
           const calendarSheets = res.result.data || []
           const list = calendarSheets.reduce((pre = [], cur) => {
@@ -557,9 +557,9 @@ const options = {
         action: 'query'
       }
     }).then(res => {
-      if (!this.store.data.hasAuthUserInfo) {
-        return
-      }
+    //   if (!this.store.data.hasAuthUserInfo) {
+    //     return
+    //   }
       const { result = {} } = res || {}
       if (result && result.data) {
         this.setData({
