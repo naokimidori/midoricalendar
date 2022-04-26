@@ -16,8 +16,8 @@
 .top-bg .page-title {
     position: absolute;
     left: 50%;
-    top: 100rpx;
-    font-size: 36rpx;
+    top: 120rpx;
+    font-size: 32rpx;
     transform: translateX(-50%);
     font-weight: bold;
     z-index: 2;
@@ -221,6 +221,9 @@
   min-height: 200rpx;
   margin: 0 auto;
   padding: 24rpx;
+  position: sticky;
+  bottom: -130rpx;
+  box-shadow: 0 0 14rpx rgba(0, 0, 0, 0.1);
 }
 
 .page-index .note-wrapper .title {
