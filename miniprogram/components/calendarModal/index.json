@@ -1,6 +1,4 @@
 {
   "component": true,
-  "usingComponents": {
-    "note-modal": "../noteModal/index"
-  }
+  "usingComponents": {}
 }
