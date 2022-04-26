@@ -3,7 +3,7 @@
   <view class="calendar">
     <!-- 顶部及切换 -->
     <view class="top-bg">
-      <!-- <view class='page-title'>小树日历</view> -->
+      <view class='page-title'>小树日历</view>
       <image mode="scaleToFill" src="cloud://calendar-prod-w7kpb.6361-calendar-prod-w7kpb-1302089220/project_pics/bg5.jpeg"></image>
       <view class="calendar-header">
         <picker mode="date" value="{{date}}" start="1994-05" end="2099-12" fields='month' bindchange="bindDateChange">
