@@ -34,7 +34,7 @@ const options = {
     curDayInfos: {},
   },
   onLoad() {
-    this.getLocation();
+    // this.getLocation();
     this.getAllSheetSetting();
     this.init();
   },
@@ -47,6 +47,7 @@ const options = {
       cacheSheetList: sheetList
     })
   },
+  // 废弃
   getLocation() {
     let _this = this;
     wx.getLocation({
@@ -57,6 +58,7 @@ const options = {
       }
     });
   },
+  // 废弃
   getCurrentCity(location) {
     let _this = this;
     wx.request({

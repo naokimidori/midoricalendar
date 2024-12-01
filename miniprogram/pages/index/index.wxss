@@ -10,7 +10,7 @@
 
 .top-bg {
   position: relative;
-  height: 400rpx;
+  height: 600rpx;
 }
 
 .top-bg .page-title {
@@ -26,8 +26,8 @@
 .top-bg image {
   position: absolute;
   width: 100vw;
-  height: 1200rpx;
-  top: -110rpx;
+  /* height: 1200rpx; */
+  top: -30rpx;
   left: 0;
   z-index: 1;
 }
